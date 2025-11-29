@@ -1,0 +1,113 @@
+﻿@model WebsiteThuCungBento.Models.DangKyModel
+
+@{
+    ViewBag.Title = "Đăng Ký";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="row justify-content-center align-items-center" style="min-height: 80vh; padding: 2rem 0;">
+    <div class="col-12" style="max-width: 1100px;">
+        <div class="glass-card overflow-hidden d-flex shadow-xl">
+            <!-- Image Side -->
+            <div class="d-none d-lg-block w-40 position-relative bg-light">
+                <img src="~/images/petshop.jpg" alt="Register Banner" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-5" 
+                     style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                    <h2 class="text-white fw-bold mb-2">Tham gia cùng chúng tôi</h2>
+                    <p class="text-white-50 mb-0">Tạo tài khoản để nhận nhiều ưu đãi hấp dẫn và chăm sóc thú cưng tốt hơn.</p>
+                </div>
+            </div>
+
+            <!-- Form Side -->
+            <div class="w-100 w-lg-60 p-5 bg-white">
+                <div class="text-center mb-4">
+                    <h1 style="font-weight: 700; color: var(--primary-color);">Đăng Ký Tài Khoản</h1>
+                    <p class="text-muted">Điền thông tin bên dưới để tạo tài khoản mới</p>
+                </div>
+                
+                @using (Html.BeginForm("dangky", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    
+                    if (ViewBag.Success != null)
+                    {
+                        <div class="alert alert-success text-center mb-4" style="color: #15803d; background: rgba(22, 163, 74, 0.1); padding: 0.75rem; border-radius: var(--radius-sm);">
+                            <i class="fa-solid fa-check-circle me-2"></i> @ViewBag.Success
+                        </div>
+                    }
+
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <label class="form-label small text-muted fw-bold">Tên đăng nhập <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(model => model.tendn, new { @class = "form-control p-2", placeholder = "Chọn tên đăng nhập" })
+                            @Html.ValidationMessageFor(model => model.tendn, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="col-6 mb-3">
+                            <label class="form-label small text-muted fw-bold">Mật khẩu <span class="text-danger">*</span></label>
+                            @Html.PasswordFor(model => model.matkhau, new { @class = "form-control p-2", placeholder = "Mật khẩu" })
+                            @Html.ValidationMessageFor(model => model.matkhau, "", new { @class = "text-danger small" })
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label class="form-label small text-muted fw-bold">Xác nhận mật khẩu <span class="text-danger">*</span></label>
+                            @Html.PasswordFor(model => model.xacnhanmatkhau, new { @class = "form-control p-2", placeholder = "Nhập lại mật khẩu" })
+                            @Html.ValidationMessageFor(model => model.xacnhanmatkhau, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="col-12 mb-3">
+                            <label class="form-label small text-muted fw-bold">Họ và tên <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(model => model.hoten, new { @class = "form-control p-2", placeholder = "Họ tên đầy đủ" })
+                            @Html.ValidationMessageFor(model => model.hoten, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="col-6 mb-3">
+                            <label class="form-label small text-muted fw-bold">Điện thoại <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(model => model.dienthoai, new { @class = "form-control p-2", placeholder = "Số điện thoại", onkeypress = "return isNumberKey(event)" })
+                            @Html.ValidationMessageFor(model => model.dienthoai, "", new { @class = "text-danger small" })
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label class="form-label small text-muted fw-bold">Email <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(model => model.email, new { @class = "form-control p-2", placeholder = "Email liên hệ", type = "email" })
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="col-6 mb-3">
+                            <label class="form-label small text-muted fw-bold">Ngày sinh</label>
+                            <input type="date" name="ngaysinh" id="ngaysinh" class="form-control p-2">
+                            @Html.ValidationMessageFor(model => model.ngaysinh, "", new { @class = "text-danger small" })
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label class="form-label small text-muted fw-bold">Ảnh đại diện</label>
+                            <input type="file" name="hinhanh" id="hinhanh" class="form-control p-2" accept="image/*">
+                            @Html.ValidationMessageFor(model => model.hinhanh, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="col-12 mb-4">
+                            <label class="form-label small text-muted fw-bold">Địa chỉ</label>
+                            @Html.TextAreaFor(model => model.diachi, new { @class = "form-control p-2", rows = "2", placeholder = "Địa chỉ liên hệ" })
+                            @Html.ValidationMessageFor(model => model.diachi, "", new { @class = "text-danger small" })
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 py-3 mb-4 fw-bold text-uppercase" style="letter-spacing: 0.5px;">Đăng Ký</button>
+                    
+                    <div class="text-center">
+                        <span class="text-muted">Đã có tài khoản? </span>
+                        <a href="@Url.Action("dangnhap", "User")" class="text-primary fw-bold text-decoration-none">Đăng nhập ngay</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+</script>
+
+

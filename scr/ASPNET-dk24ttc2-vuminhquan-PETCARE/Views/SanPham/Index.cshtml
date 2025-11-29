@@ -1,0 +1,372 @@
+﻿@using WebsiteThuCungBento.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<WebsiteThuCungBento.Models.SANPHAM>
+
+@{
+    ViewBag.Title = "Quản lý sản phẩm";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h3 class="mb-2 fw-bold">
+                <i class="fa-solid fa-box text-primary me-2"></i>
+                Quản Lý Sản Phẩm / Thú Cưng
+            </h3>
+            <p class="text-muted mb-0">Quản lý toàn bộ sản phẩm và thú cưng</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <a href="@Url.Action("Create", "SanPham")" class="btn btn-primary">
+                <i class="fa-solid fa-plus me-2"></i>
+                Thêm sản phẩm mới
+            </a>
+        </div>
+    </div>
+
+    <!-- Statistics -->
+    <div class="row g-3 mb-4">
+        <div class="col-xl-3 col-md-6">
+            <div class="stat-card bg-primary-subtle">
+                <div class="stat-icon bg-primary">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 class="mb-0">@Model.TotalItemCount</h3>
+                    <p class="mb-0">Tổng sản phẩm</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="stat-card bg-success-subtle">
+                <div class="stat-icon bg-success">
+                    <i class="fa-solid fa-check-circle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 class="mb-0">@Model.Count(x => x.SOLUONG > 0)</h3>
+                    <p class="mb-0">Còn hàng</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="stat-card bg-danger-subtle">
+                <div class="stat-icon bg-danger">
+                    <i class="fa-solid fa-exclamation-circle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 class="mb-0">@Model.Count(x => x.SOLUONG == 0)</h3>
+                    <p class="mb-0">Hết hàng</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="stat-card bg-warning-subtle">
+                <div class="stat-icon bg-warning">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 class="mb-0">@Model.Count(x => x.SOLUONG > 0 && x.SOLUONG < 10)</h3>
+                    <p class="mb-0">Sắp hết</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search and Filter -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="input-group">
+                <span class="input-group-text bg-white">
+                    <i class="fa-solid fa-search"></i>
+                </span>
+                <input type="text" id="searchInput" class="form-control" placeholder="Tìm kiếm sản phẩm...">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <select class="form-select" id="stockFilter">
+                <option value="">Tất cả tồn kho</option>
+                <option value="instock">Còn hàng</option>
+                <option value="outstock">Hết hàng</option>
+                <option value="lowstock">Sắp hết (< 10)</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select class="form-select" id="sortSelect">
+                <option value="">Sắp xếp</option>
+                <option value="name-asc">Tên A-Z</option>
+                <option value="name-desc">Tên Z-A</option>
+                <option value="price-asc">Giá thấp → cao</option>
+                <option value="price-desc">Giá cao → thấp</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Products Table -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0" id="productsTable">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="p-3" style="width: 80px;">Ảnh</th>
+                                    <th class="p-3">Tên sản phẩm</th>
+                                    <th class="p-3">Loại / Thương hiệu</th>
+                                    <th class="p-3 text-end">Giá mua</th>
+                                    <th class="p-3 text-end">Giá bán</th>
+                                    <th class="p-3 text-center">Tồn kho</th>
+                                    <th class="p-3 text-center">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="product-row" 
+                                        data-name="@item.TENSP.ToLower()"
+                                        data-stock="@item.SOLUONG"
+                                        data-price="@item.DONGIABAN">
+                                        <td class="p-3">
+                                            <img src="@Url.Content("~/img/" + item.HINHANH)" 
+                                                 alt="@item.TENSP"
+                                                 class="product-img">
+                                        </td>
+                                        <td class="p-3">
+                                            <strong class="product-name">@item.TENSP</strong>
+                                            <br/>
+                                            <small class="text-muted">ID: @item.MASP</small>
+                                        </td>
+                                        <td class="p-3">
+                                            <div>
+                                                <span class="badge bg-light text-dark">@item.LOAI.TENLOAI</span>
+                                            </div>
+                                            <small class="text-muted">
+                                                <i class="fa-solid fa-tag me-1"></i>
+                                                @item.THUONGHIEU.TENTH
+                                            </small>
+                                        </td>
+                                        <td class="p-3 text-end">
+                                            <span class="text-muted">@string.Format("{0:#,##0}", item.DONGIAMUA) đ</span>
+                                        </td>
+                                        <td class="p-3 text-end">
+                                            <strong class="text-primary">@string.Format("{0:#,##0}", item.DONGIABAN) đ</strong>
+                                        </td>
+                                        <td class="p-3 text-center">
+                                            @if (item.SOLUONG == 0)
+                                            {
+                                                <span class="badge bg-danger">
+                                                    <i class="fa-solid fa-times me-1"></i>
+                                                    Hết hàng
+                                                </span>
+                                            }
+                                            else if (item.SOLUONG < 10)
+                                            {
+                                                <span class="badge bg-warning">
+                                                    <i class="fa-solid fa-exclamation me-1"></i>
+                                                    @item.SOLUONG
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-success">
+                                                    <i class="fa-solid fa-check me-1"></i>
+                                                    @item.SOLUONG
+                                                </span>
+                                            }
+                                        </td>
+                                        <td class="p-3 text-center">
+                                            <div class="btn-group" role="group">
+                                                <a href="@Url.Action("Edit", "SanPham", new { id = item.MASP })" 
+                                                   class="btn btn-sm btn-outline-primary" 
+                                                   title="Chỉnh sửa">
+                                                    <i class="fa-solid fa-pen"></i>
+                                                </a>
+                                                <a href="@Url.Action("Details", "SanPham", new { id = item.MASP })" 
+                                                   class="btn btn-sm btn-outline-info" 
+                                                   title="Chi tiết">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </a>
+                                                <a href="@Url.Action("Delete", "SanPham", new { id = item.MASP })" 
+                                                   class="btn btn-sm btn-outline-danger" 
+                                                   title="Xóa"
+                                                   onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?')">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <p class="text-muted">
+                Hiển thị @Model.Count() / @Model.TotalItemCount sản phẩm
+                (Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount)
+            </p>
+        </div>
+        <div class="col-md-6">
+            <div class="pagination-container text-end">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), 
+                    new PagedListRenderOptions { 
+                        LiElementClasses = new string[] { "page-item" },
+                        UlElementClasses = new string[] { "pagination", "justify-content-end" }
+                    })
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .stat-card {
+        padding: 1.5rem;
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .stat-info h3 {
+        font-size: 1.75rem;
+        font-weight: 700;
+    }
+
+    .stat-info p {
+        color: #64748b;
+        font-size: 0.9rem;
+    }
+
+    .product-img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 2px solid #f1f5f9;
+    }
+
+    .table th {
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        color: #64748b;
+    }
+
+    .table tbody tr {
+        transition: all 0.2s ease;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f8fafc;
+    }
+
+    .bg-primary-subtle { background-color: rgba(13, 110, 253, 0.1); }
+    .bg-success-subtle { background-color: rgba(25, 135, 84, 0.1); }
+    .bg-warning-subtle { background-color: rgba(255, 193, 7, 0.1); }
+    .bg-danger-subtle { background-color: rgba(220, 53, 69, 0.1); }
+
+    .pagination-container .pagination {
+        display: flex;
+        gap: 0.5rem;
+        margin: 0;
+    }
+
+    .pagination-container .page-item a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: white;
+        color: #0f172a;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        font-size: 0.9rem;
+        border: none;
+    }
+
+    .pagination-container .page-item.active a,
+    .pagination-container .page-item a:hover {
+        background: #0f172a;
+        color: white;
+    }
+</style>
+
+<script>
+    // Search functionality
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        const searchTerm = this.value.toLowerCase();
+        const rows = document.querySelectorAll('.product-row');
+        
+        rows.forEach(row => {
+            const name = row.getAttribute('data-name');
+            row.style.display = name.includes(searchTerm) ? '' : 'none';
+        });
+    });
+
+    // Stock filter
+    document.getElementById('stockFilter').addEventListener('change', function() {
+        const filterValue = this.value;
+        const rows = document.querySelectorAll('.product-row');
+        
+        rows.forEach(row => {
+            const stock = parseInt(row.getAttribute('data-stock'));
+            let show = true;
+            
+            if (filterValue === 'instock') show = stock > 0;
+            else if (filterValue === 'outstock') show = stock === 0;
+            else if (filterValue === 'lowstock') show = stock > 0 && stock < 10;
+            
+            row.style.display = show ? '' : 'none';
+        });
+    });
+
+    // Sort functionality
+    document.getElementById('sortSelect').addEventListener('change', function() {
+        const sortValue = this.value;
+        const tbody = document.querySelector('#productsTable tbody');
+        const rows = Array.from(tbody.querySelectorAll('.product-row'));
+        
+        if (!sortValue) return;
+        
+        rows.sort((a, b) => {
+            if (sortValue === 'name-asc') {
+                return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'));
+            } else if (sortValue === 'name-desc') {
+                return b.getAttribute('data-name').localeCompare(a.getAttribute('data-name'));
+            } else if (sortValue === 'price-asc') {
+                return parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price'));
+            } else if (sortValue === 'price-desc') {
+                return parseFloat(b.getAttribute('data-price')) - parseFloat(a.getAttribute('data-price'));
+            }
+        });
+        
+        rows.forEach(row => tbody.appendChild(row));
+    });
+</script>

@@ -1,0 +1,166 @@
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\WebThuCung.dll.config
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\WebThuCung.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\WebThuCung.pdb
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\csc.exe
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\csc.exe.config
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\csc.rsp
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\csi.exe
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\csi.exe.config
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\csi.rsp
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.Managed.Core.targets
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.AppContext.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Collections.Immutable.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Console.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Globalization.Calendars.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.IO.Compression.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.IO.Compression.ZipFile.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.IO.FileSystem.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Net.Http.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Net.Sockets.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Reflection.Metadata.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.ValueTuple.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Xml.XmlDocument.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Xml.XPath.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\vbc.exe
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\vbc.exe.config
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\vbc.rsp
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\VBCSCompiler.exe
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\VBCSCompiler.exe.config
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\Antlr3.Runtime.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\Microsoft.Web.Infrastructure.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\Newtonsoft.Json.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\PagedList.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\PagedList.Mvc.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.Helpers.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.Mvc.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.Optimization.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.Razor.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.WebPages.Deployment.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.WebPages.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.WebPages.Razor.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\WebGrease.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\PagedList.xml
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\PagedList.Mvc.xml
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.Helpers.xml
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.Mvc.xml
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.Optimization.xml
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.Razor.xml
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.WebPages.xml
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.WebPages.Deployment.xml
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.WebPages.Razor.xml
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\Newtonsoft.Json.xml
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\Antlr3.Runtime.pdb
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\obj\Debug\WebThuCung.csproj.AssemblyReference.cache
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\obj\Debug\WebThuCung.csproj.CoreCompileInputs.cache
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\obj\Debug\WebThuCung.csproj.Up2Date
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\obj\Debug\WebThuCung.dll
+D:\LEARNING\ĐH Trà Vinh\2. Đề tài ASP.NET\FINAL\Bài gửi\ASPNET-dk24ttc2-vuminhquan-PETCARE\obj\Debug\WebThuCung.pdb
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\WebThuCung.dll.config
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\WebThuCung.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\WebThuCung.pdb
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\csc.exe
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\csc.exe.config
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\csc.rsp
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\csi.exe
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\csi.exe.config
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\csi.rsp
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.Managed.Core.targets
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.AppContext.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Collections.Immutable.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Console.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Globalization.Calendars.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.IO.Compression.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.IO.Compression.ZipFile.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.IO.FileSystem.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Net.Http.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Net.Sockets.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Reflection.Metadata.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.ValueTuple.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Xml.XmlDocument.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Xml.XPath.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\vbc.exe
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\vbc.exe.config
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\vbc.rsp
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\VBCSCompiler.exe
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\roslyn\VBCSCompiler.exe.config
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\Antlr3.Runtime.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\Microsoft.Web.Infrastructure.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\Newtonsoft.Json.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\PagedList.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\PagedList.Mvc.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.Helpers.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.Mvc.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.Optimization.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.Razor.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.WebPages.Deployment.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.WebPages.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.WebPages.Razor.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\WebGrease.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\PagedList.xml
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\PagedList.Mvc.xml
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.Helpers.xml
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.Mvc.xml
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.Optimization.xml
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.Razor.xml
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.WebPages.xml
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.WebPages.Deployment.xml
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\System.Web.WebPages.Razor.xml
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\Newtonsoft.Json.xml
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\Antlr3.Runtime.pdb
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\obj\Debug\WebThuCung.csproj.AssemblyReference.cache
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\obj\Debug\WebThuCung.csproj.CoreCompileInputs.cache
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\obj\Debug\WebThuCung.csproj.Up2Date
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\obj\Debug\WebThuCung.dll
+D:\LEARNING\1. WEB THUCUNG\WebThuCung\ASPNET-dk24ttc2-vuminhquan-PETCARE\obj\Debug\WebThuCung.pdb

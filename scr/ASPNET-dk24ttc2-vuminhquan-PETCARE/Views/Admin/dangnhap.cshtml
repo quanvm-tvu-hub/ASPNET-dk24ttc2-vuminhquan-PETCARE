@@ -1,0 +1,349 @@
+﻿@model WebsiteThuCungBento.Models.DangNhapModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập Admin - Bento Pet Shop</title>
+    <link rel="shortcut icon" href="~/img/logo/pet2.png" type="image/png" />
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveBackground 20s linear infinite;
+        }
+
+        @@keyframes moveBackground {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .login-container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            display: flex;
+            min-height: 600px;
+        }
+
+        /* Left Side - Image */
+        .login-image {
+            flex: 1;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-image::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.2), transparent);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+
+        .login-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .brand-info {
+            text-align: center;
+            color: white;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .brand-info h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .brand-info p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+        }
+
+        /* Right Side - Form */
+        .login-form-container {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .login-header .admin-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-header p {
+            color: #64748b;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .input-group-custom {
+            position: relative;
+        }
+
+        .input-group-custom i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #f59e0b;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1);
+        }
+
+        .form-control:focus + i {
+            color: #f59e0b;
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.3);
+        }
+
+        .alert-danger {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .security-note {
+            text-align: center;
+            margin-top: 2rem;
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        @@media (max-width: 768px) {
+            .login-card {
+                flex-direction: column;
+            }
+
+            .login-image {
+                min-height: 250px;
+            }
+
+            .login-form-container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <!-- Left Side - Brand -->
+            <div class="login-image">
+                <img src="@Url.Content("~/img/pet960x1050.jpg")" alt="Bento Pet Shop">
+                <div class="brand-info">
+                    <h2>Bento Pet Shop</h2>
+                    <p>Hệ thống quản trị nội bộ</p>
+                </div>
+            </div>
+
+            <!-- Right Side - Login Form -->
+            <div class="login-form-container">
+                <div class="login-header">
+                    <div class="admin-badge">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>ADMIN PANEL</span>
+                    </div>
+                    <h1>Đăng Nhập</h1>
+                    <p>Nhập thông tin để truy cập hệ thống quản trị</p>
+                </div>
+
+                @if (ViewBag.Thongbao != null)
+                {
+                    <div class="alert-danger">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <span>@ViewBag.Thongbao</span>
+                    </div>
+                }
+
+                @using (Html.BeginForm("dangnhap", "Admin", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    
+                    <div class="form-group">
+                        <label for="tendn">Tên đăng nhập</label>
+                        <div class="input-group-custom">
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="tendn" 
+                                   name="tendn" 
+                                   placeholder="Nhập tên đăng nhập"
+                                   required>
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.tendn, "", new { @class = "error-message" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="matkhau">Mật khẩu</label>
+                        <div class="input-group-custom">
+                            <input type="password" 
+                                   class="form-control" 
+                                   id="matkhau" 
+                                   name="matkhau" 
+                                   placeholder="Nhập mật khẩu"
+                                   required>
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.matkhau, "", new { @class = "error-message" })
+                    </div>
+
+                    <button type="submit" class="btn-login">
+                        <i class="fa-solid fa-right-to-bracket me-2"></i>
+                        Đăng Nhập
+                    </button>
+                }
+
+                <div class="security-note">
+                    <i class="fa-solid fa-shield-halved me-1"></i>
+                    Kết nối được bảo mật và mã hóa
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+﻿@model WebsiteThuCungBento.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "Sửa thông tin ";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<section id="breadcrumb-wrapper3" class="breadcrumb-w-img">
+    <div class="breadcrumb-overlay"></div>
+    <div class="breadcrumb-content">
+        <div class="wrapper">
+            <div class="inner text-center">
+                <div class="breadcrumb-big">
+
+                    <h2>
+                        Tài khoản
+                    </h2>
+
+                </div>
+                <div class="breadcrumb-small">
+                    <a href="@Url.Action("index","User")" title="Quay trở về trang chủ">Trang chủ</a>
+
+
+
+                    <span aria-hidden="true">/</span>
+
+                    <span>Sửa Thông Tin Cá Nhân</span>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="PageContainer" class="is-moved-by-drawer" style="border-color:dimgray">
+    <main class="main-content" role="main">
+        <section id="page-wrapper">
+            <div class="wrapper">
+                <div class="inner">
+                    <div class="grid">
+                        <div class="grid__item large--one-third push--large--one-third text-center">
+                            <h1 align="center">Sửa Thông Tin Cá Nhân</h1>
+                            <div class="form-vertical">                            
+                                    @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        <div class="form-horizontal" align="justify">                                           
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                            @Html.HiddenFor(model => model.MAKH)
+
+                                            <div class="form-group">
+                                                <label>Họ tên:</label>
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.HOTENKH, new { htmlAttributes = new { @class = "form-control input-full" }, @Required = "required" })
+                                                    @Html.ValidationMessageFor(model => model.HOTENKH, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group " >
+                                                <label>Số Điện Thoại:</label>
+                                                <div class="col-md-10" onkeypress="return isNumberKey(event)">
+                                                    @Html.EditorFor(model => model.DIENTHOAI, new { htmlAttributes = new { @class = "form-control input-full"}, @Required = "required" })
+                                                    @Html.ValidationMessageFor(model => model.DIENTHOAI, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Địa Chỉ:</label>
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.DIACHI, new { htmlAttributes = new { @class = "form-control input-full" }, @Required = "required" })
+                                                    @Html.ValidationMessageFor(model => model.DIACHI, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Tên đăng nhập:</label>
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.TENDNKH, new { htmlAttributes = new { @class = "form-control input-full" }, @Required = "required" })
+                                                    @Html.ValidationMessageFor(model => model.TENDNKH, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>                          
+                                            <div class="form-group">
+                                                <label>Email:</label>
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control input-full" }, @Required = "required" })
+                                                    @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Ngày sinh:</label>
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.NGAYSINH, new { htmlAttributes = new { @class = "form-control input-full", @Required = "required" } })
+                                                    @Html.ValidationMessageFor(model => model.NGAYSINH, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="form-group">
+                                               <label>Hình ảnh:</label>
+                                                <div class="col-md-10 ">
+                                                    <img src="@Url.Content("~/img/" + @Model.HINHANH)" alt="" height="120" width="120" />
+                                                    <input class="form-control text-box single-line input-full " id="fileUpload" required="required" name="fileUpload" type="file" value="">
+
+                                                </div>
+                                            </div>
+
+
+                                            <br />
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <input type="submit" value="Cập nhật" class="btn btn--full" /> 
+                                                    @Html.ActionLink("Quay lại trang thông tin", "Index")
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }                               
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>
+<script language='javascript'>
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
+</script>

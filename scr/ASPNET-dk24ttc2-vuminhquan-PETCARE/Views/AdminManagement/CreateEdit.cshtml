@@ -1,0 +1,345 @@
+@model WebsiteThuCungBento.ViewModels.AdminFormViewModel
+
+@{
+    ViewBag.Title = Model.IsEdit ? "Sửa Admin" : "Tạo Admin Mới";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Styles {
+    <style>
+        .form-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .avatar-preview {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ddd;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .password-strength {
+            height: 5px;
+            border-radius: 3px;
+            margin-top: 5px;
+            transition: all 0.3s;
+        }
+
+        .strength-weak { background: #dc3545; width: 25%; }
+        .strength-medium { background: #ffc107; width: 50%; }
+        .strength-strong { background: #28a745; width: 75%; }
+        .strength-very-strong { background: #007bff; width: 100%; }
+
+        .form-section {
+            border-left: 3px solid #007bff;
+            padding-left: 15px;
+            margin: 20px 0;
+        }
+
+        .required-field::after {
+            content: " *";
+            color: red;
+        }
+    </style>
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h2>
+                <i class="fas @(Model.IsEdit ? "fa-edit" : "fa-user-plus")"></i> 
+                @ViewBag.Title
+            </h2>
+            <p class="text-muted">@(Model.IsEdit ? "Cập nhật thông tin admin" : "Thêm tài khoản quản trị mới")</p>
+        </div>
+        <div class="col-md-6 text-right">
+            <a href="@Url.Action("Index")" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Quay lại
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="form-card">
+                @using (Html.BeginForm(Model.IsEdit ? "Edit" : "Create", "AdminManagement", FormMethod.Post, 
+                    new { enctype = "multipart/form-data", @class = "needs-validation", novalidate = "novalidate" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.MAADMIN)
+                    @Html.HiddenFor(m => m.IsEdit)
+                    @Html.HiddenFor(m => m.AVATAR)
+
+                    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+                    <!-- Avatar -->
+                    <div class="text-center mb-4">
+                        <img id="avatarPreview" 
+                             src="@Url.Content("~/img/" + (Model.AVATAR ?? "default-avatar.png"))" 
+                             class="avatar-preview"
+                             onerror="this.src='@Url.Content("~/img/default-avatar.png")'" />
+                        <div class="mt-2">
+                            <label for="fileUpload" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-camera"></i> Chọn ảnh đại diện
+                            </label>
+                            <input type="file" 
+                                   id="fileUpload" 
+                                   name="fileUpload" 
+                                   accept="image/*" 
+                                   style="display: none;" />
+                        </div>
+                    </div>
+
+                    <!-- Thông tin cơ bản -->
+                    <div class="form-section">
+                        <h5><i class="fas fa-user"></i> Thông Tin Cơ Bản</h5>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="required-field">@Html.DisplayNameFor(m => m.HOTEN)</label>
+                                @Html.TextBoxFor(m => m.HOTEN, new { @class = "form-control", placeholder = "Nhập họ và tên" })
+                                @Html.ValidationMessageFor(m => m.HOTEN, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="required-field">@Html.DisplayNameFor(m => m.EMAIL)</label>
+                                @Html.TextBoxFor(m => m.EMAIL, new { @class = "form-control", type = "email", placeholder = "email@example.com" })
+                                @Html.ValidationMessageFor(m => m.EMAIL, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="required-field">@Html.DisplayNameFor(m => m.DIENTHOAI)</label>
+                                @Html.TextBoxFor(m => m.DIENTHOAI, new { @class = "form-control", placeholder = "0123456789" })
+                                @Html.ValidationMessageFor(m => m.DIENTHOAI, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="required-field">@Html.DisplayNameFor(m => m.TENLOAI)</label>
+                                @Html.DropDownListFor(m => m.TENLOAI, Model.LoaiTaiKhoanList, "-- Chọn loại tài khoản --", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.TENLOAI, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required-field">@Html.DisplayNameFor(m => m.DIACHI)</label>
+                        @Html.TextAreaFor(m => m.DIACHI, new { @class = "form-control", rows = 2, placeholder = "Nhập địa chỉ" })
+                        @Html.ValidationMessageFor(m => m.DIACHI, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Thông tin đăng nhập -->
+                    <div class="form-section">
+                        <h5><i class="fas fa-key"></i> Thông Tin Đăng Nhập</h5>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="required-field">@Html.DisplayNameFor(m => m.TENDN)</label>
+                                @Html.TextBoxFor(m => m.TENDN, new { 
+                                    @class = "form-control", 
+                                    placeholder = "Tên đăng nhập",
+                                    readonly = Model.IsEdit ? "readonly" : (object)null 
+                                })
+                                @Html.ValidationMessageFor(m => m.TENDN, "", new { @class = "text-danger" })
+                                @if (Model.IsEdit)
+                                {
+                                    <small class="form-text text-muted">Không thể thay đổi tên đăng nhập</small>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label @(Model.IsEdit ? "" : "class=required-field")>
+                                    @Html.DisplayNameFor(m => m.MATKHAU)
+                                </label>
+                                @Html.PasswordFor(m => m.MATKHAU, new { 
+                                    @class = "form-control", 
+                                    id = "password",
+                                    placeholder = Model.IsEdit ? "Để trống nếu không đổi" : "Nhập mật khẩu" 
+                                })
+                                @Html.ValidationMessageFor(m => m.MATKHAU, "", new { @class = "text-danger" })
+                                <div id="passwordStrength" class="password-strength"></div>
+                                <small id="passwordStrengthText" class="form-text text-muted"></small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label @(Model.IsEdit ? "" : "class=required-field")>
+                                    @Html.DisplayNameFor(m => m.XacNhanMatKhau)
+                                </label>
+                                @Html.PasswordFor(m => m.XacNhanMatKhau, new { 
+                                    @class = "form-control", 
+                                    placeholder = "Nhập lại mật khẩu" 
+                                })
+                                @Html.ValidationMessageFor(m => m.XacNhanMatKhau, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trạng thái và vai trò -->
+                    <div class="form-section">
+                        <h5><i class="fas fa-cog"></i> Cài Đặt</h5>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    @Html.CheckBoxFor(m => m.TRANGTHAI, new { @class = "custom-control-input", id = "trangThai" })
+                                    <label class="custom-control-label" for="trangThai">
+                                        <strong>Kích hoạt tài khoản</strong>
+                                    </label>
+                                </div>
+                                <small class="form-text text-muted">
+                                    Tài khoản không hoạt động sẽ không thể đăng nhập
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (Model.VaiTroList != null && Model.VaiTroList.Any())
+                    {
+                        <div class="form-group">
+                            <label>Vai trò</label>
+                            <div class="row">
+                                @foreach (var vaiTro in Model.VaiTroList)
+                                {
+                                    <div class="col-md-6">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" 
+                                                   class="custom-control-input" 
+                                                   id="vaitro_@vaiTro.Value" 
+                                                   name="SelectedVaiTroIds" 
+                                                   value="@vaiTro.Value" />
+                                            <label class="custom-control-label" for="vaitro_@vaiTro.Value">
+                                                @vaiTro.Text
+                                            </label>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+
+                    <!-- Buttons -->
+                    <div class="form-group mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-save"></i> @(Model.IsEdit ? "Cập nhật" : "Tạo mới")
+                        </button>
+                        <a href="@Url.Action("Index")" class="btn btn-secondary btn-lg">
+                            <i class="fas fa-times"></i> Hủy
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function() {
+            // Preview avatar
+            $('#fileUpload').change(function() {
+                var file = this.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#avatarPreview').attr('src', e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Password strength checker
+            $('#password').on('input', function() {
+                var password = $(this).val();
+                var strength = checkPasswordStrength(password);
+                var $strengthBar = $('#passwordStrength');
+                var $strengthText = $('#passwordStrengthText');
+
+                $strengthBar.removeClass('strength-weak strength-medium strength-strong strength-very-strong');
+                
+                if (password.length === 0) {
+                    $strengthBar.css('width', '0');
+                    $strengthText.text('');
+                    return;
+                }
+
+                switch(strength) {
+                    case 0:
+                        $strengthBar.addClass('strength-weak');
+                        $strengthText.text('Mật khẩu yếu').css('color', '#dc3545');
+                        break;
+                    case 1:
+                        $strengthBar.addClass('strength-medium');
+                        $strengthText.text('Mật khẩu trung bình').css('color', '#ffc107');
+                        break;
+                    case 2:
+                        $strengthBar.addClass('strength-strong');
+                        $strengthText.text('Mật khẩu mạnh').css('color', '#28a745');
+                        break;
+                    case 3:
+                        $strengthBar.addClass('strength-very-strong');
+                        $strengthText.text('Mật khẩu rất mạnh').css('color', '#007bff');
+                        break;
+                }
+            });
+
+            function checkPasswordStrength(password) {
+                var score = 0;
+                if (password.length >= 8) score++;
+                if (password.length >= 12) score++;
+                if (/[A-Z]/.test(password)) score++;
+                if (/[a-z]/.test(password)) score++;
+                if (/[0-9]/.test(password)) score++;
+                if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) score++;
+
+                if (score <= 2) return 0;
+                if (score <= 3) return 1;
+                if (score <= 4) return 2;
+                return 3;
+            }
+
+            // Form validation
+            $('form').submit(function(e) {
+                var isValid = true;
+                
+                // Validate required fields
+                $('input[required], select[required], textarea[required]').each(function() {
+                    if (!$(this).val()) {
+                        isValid = false;
+                        $(this).addClass('is-invalid');
+                    } else {
+                        $(this).removeClass('is-invalid');
+                    }
+                });
+
+                if (!isValid) {
+                    e.preventDefault();
+                    alert('Vui lòng điền đầy đủ thông tin bắt buộc');
+                }
+            });
+        });
+    </script>
+}

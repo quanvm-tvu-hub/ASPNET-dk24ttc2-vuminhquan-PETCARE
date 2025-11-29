@@ -1,0 +1,65 @@
+﻿@model WebsiteThuCungBento.Models.DONDATHANG
+
+@{
+    ViewBag.Title = "Xóa đơn hàng ";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<h3>Bạn có chắc muốn xóa đơn này?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Đã thanh toán")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATHANHTOAN)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Đã giao hàng")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TINHTRANGDH)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Ngày đặt")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYDAT)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Ngày giao")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYGIAO)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Mã khách hàng")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MAKH)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở lại trang trước", "DonDatHang")
+        </div>
+    }
+</div>

@@ -1,0 +1,268 @@
+﻿@model WebsiteThuCungBento.ViewModels.ListDVViewModel
+
+@{
+    ViewBag.Title = "Khách sạn thú cưng";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<!-- Hero Section -->
+<div class="position-relative overflow-hidden" style="height: 400px; background: linear-gradient(135deg, #0f172a 0%, #334155 100%);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-lg-6 text-white">
+                <h1 class="display-4 fw-bold mb-3">Khách Sạn Thú Cưng</h1>
+                <p class="fs-5 mb-4">Nơi nghỉ dưỡng 5 sao dành cho thú cưng của bạn với đầy đủ tiện nghi và chăm sóc tận tâm 24/7</p>
+                <div class="d-flex gap-3">
+                    <div class="d-flex align-items-center">
+                        <i class="fa-solid fa-camera fs-3 me-2 text-warning"></i>
+                        <span>Camera 24/7</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fa-solid fa-snowflake fs-3 me-2 text-warning"></i>
+                        <span>Điều hòa</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fa-solid fa-utensils fs-3 me-2 text-warning"></i>
+                        <span>3 bữa/ngày</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="ratio ratio-16x9 rounded-3 overflow-hidden shadow-lg">
+                    <iframe src="https://www.youtube.com/embed/AuPHPiQqgc8" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Booking Form -->
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4 fw-bold text-primary">Đặt Phòng Ngay</h2>
+                    
+                    <form action="/User/DangKyDichVu" method="post">
+                        <input type="hidden" name="serviceid" id="serviceid" />
+                        
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Chọn loại phòng:</label>
+                            <div class="row g-3">
+                                @foreach (var listdv in Model.listDV)
+                                {
+                                    foreach (var listct in Model.listCTDV)
+                                    {
+                                        if (listct.MaDV == listdv.MaDV)
+                                        {
+                                            <div class="col-md-6">
+                                                <div class="room-option p-3 border rounded-3 cursor-pointer" 
+                                                     data-serviceid="@listct.MaCT" 
+                                                     data-price="@String.Format("{0:0,0}", listct.DonGia)">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div>
+                                                            <h5 class="mb-1">@listdv.TenDV</h5>
+                                                            <p class="text-muted mb-0 small">@listct.DieuKien</p>
+                                                        </div>
+                                                        <div class="text-end">
+                                                            <div class="fw-bold text-warning fs-5">@String.Format("{0:0,0}", listct.DonGia)đ</div>
+                                                            <small class="text-muted">/ ngày</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                        <div class="text-center pt-3 border-top">
+                            <div class="mb-3">
+                                <span class="text-muted">Tổng tiền:</span>
+                                <span id="totalPrice" class="fs-3 fw-bold text-warning ms-2">0đ</span>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg px-5">
+                                <i class="fa-solid fa-calendar-check me-2"></i> Đặt phòng ngay
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Price Tables -->
+<div class="container my-5">
+    <h2 class="text-center mb-5 fw-bold">Bảng Giá Dịch Vụ</h2>
+    
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-primary text-white py-3">
+                    <h4 class="mb-0"><i class="fa-solid fa-cat me-2"></i> Khách Sạn Mèo</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Cân nặng</th>
+                                    <th class="text-end">Giá/ngày</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Dưới 3kg</td>
+                                    <td class="text-end fw-bold text-warning">89,000đ</td>
+                                </tr>
+                                <tr>
+                                    <td>Trên 3kg</td>
+                                    <td class="text-end fw-bold text-warning">109,000đ</td>
+                                </tr>
+                                <tr>
+                                    <td>Gửi trong ngày</td>
+                                    <td class="text-end fw-bold text-warning">60,000đ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Camera 24/7</li>
+                        <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> 2-3 bữa/ngày</li>
+                        <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Vệ sinh hàng ngày</li>
+                        <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Điều hòa 24/7</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-warning text-white py-3">
+                    <h4 class="mb-0"><i class="fa-solid fa-dog me-2"></i> Khách Sạn Chó</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Cân nặng</th>
+                                    <th class="text-end">Giá/ngày</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Dưới 5kg</td>
+                                    <td class="text-end fw-bold text-warning">120,000đ</td>
+                                </tr>
+                                <tr>
+                                    <td>5kg - 10kg</td>
+                                    <td class="text-end fw-bold text-warning">150,000đ</td>
+                                </tr>
+                                <tr>
+                                    <td>10kg - 15kg</td>
+                                    <td class="text-end fw-bold text-warning">180,000đ</td>
+                                </tr>
+                                <tr>
+                                    <td>Không nhốt chuồng</td>
+                                    <td class="text-end fw-bold text-warning">220,000đ</td>
+                                </tr>
+                                <tr>
+                                    <td>Gửi trong ngày</td>
+                                    <td class="text-end fw-bold text-warning">98,000đ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Camera 24/7</li>
+                        <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> 2-3 bữa/ngày</li>
+                        <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Vui chơi 2 lần/ngày</li>
+                        <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Điều hòa 24/7</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features -->
+<div class="bg-light py-5 my-5">
+    <div class="container">
+        <h2 class="text-center mb-5 fw-bold">Cam Kết Của Chúng Tôi</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fa-solid fa-shield-halved fs-2"></i>
+                    </div>
+                    <h5 class="fw-bold">Uy tín - Chuyên nghiệp</h5>
+                    <p class="text-muted">Đội ngũ chăm sóc giàu kinh nghiệm</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-warning text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fa-solid fa-camera fs-2"></i>
+                    </div>
+                    <h5 class="fw-bold">Camera 24/7</h5>
+                    <p class="text-muted">Theo dõi thú cưng mọi lúc mọi nơi</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fa-solid fa-heart fs-2"></i>
+                    </div>
+                    <h5 class="fw-bold">Chăm sóc tận tâm</h5>
+                    <p class="text-muted">Yêu thương như chính con của chúng tôi</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .room-option {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .room-option:hover {
+        border-color: var(--accent-color) !important;
+        background-color: #fff7ed;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(245, 158, 11, 0.2);
+    }
+    
+    .room-option.selected {
+        border-color: var(--accent-color) !important;
+        background-color: #fff7ed;
+        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    }
+</style>
+
+<script>
+    $(document).ready(function() {
+        $('.room-option').click(function() {
+            $('.room-option').removeClass('selected');
+            $(this).addClass('selected');
+            
+            var serviceId = $(this).data('serviceid');
+            var price = $(this).data('price');
+            
+            $('#serviceid').val(serviceId);
+            $('#totalPrice').text(price + 'đ');
+        });
+
+        $('form').submit(function(e) {
+            if (!$('#serviceid').val()) {
+                e.preventDefault();
+                alert('Vui lòng chọn loại phòng!');
+            }
+        });
+    });
+</script>

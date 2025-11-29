@@ -1,0 +1,220 @@
+﻿@using WebsiteThuCungBento.Models
+@{
+    ViewBag.Title = "Xác nhận đơn hàng";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Success Card -->
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <!-- Success Header -->
+                <div class="text-center py-5" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                    <div class="success-icon mb-3">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <h1 class="text-white fw-bold mb-2">Đặt Hàng Thành Công!</h1>
+                    <p class="text-white-50 mb-0">Cảm ơn bạn đã tin tưởng và đặt hàng tại Bento Pet Shop</p>
+                </div>
+
+                <!-- Order Info -->
+                <div class="card-body p-5">
+                    <div class="alert alert-info border-0" style="background: rgba(59, 130, 246, 0.1);">
+                        <div class="d-flex align-items-start">
+                            <i class="fa-solid fa-info-circle fs-4 text-primary me-3 mt-1"></i>
+                            <div>
+                                <h5 class="fw-bold mb-2">Đơn hàng đã được ghi nhận</h5>
+                                <p class="mb-0">
+                                    Chúng tôi sẽ liên hệ với bạn trong vòng <strong>24 giờ</strong> để xác nhận đơn hàng. 
+                                    Vui lòng giữ máy để nhận cuộc gọi từ chúng tôi.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Timeline -->
+                    <div class="my-5">
+                        <h5 class="fw-bold mb-4">Quy trình xử lý đơn hàng</h5>
+                        <div class="timeline">
+                            <div class="timeline-item active">
+                                <div class="timeline-icon">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h6 class="fw-bold mb-1">Đặt hàng thành công</h6>
+                                    <p class="text-muted small mb-0">Đơn hàng đã được ghi nhận</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h6 class="fw-bold mb-1">Xác nhận đơn hàng</h6>
+                                    <p class="text-muted small mb-0">Trong vòng 24 giờ</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon">
+                                    <i class="fa-solid fa-box"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h6 class="fw-bold mb-1">Đóng gói & Giao hàng</h6>
+                                    <p class="text-muted small mb-0">Giao hàng trong 2-3 ngày</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon">
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h6 class="fw-bold mb-1">Hoàn thành</h6>
+                                    <p class="text-muted small mb-0">Nhận hàng & Đánh giá</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Section -->
+                    <div class="bg-light rounded-3 p-4 mb-4">
+                        <h5 class="fw-bold mb-3">Cần hỗ trợ?</h5>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <a href="tel:0908943407" class="contact-card">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <span>0908943407</span>
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="https://www.facebook.com" target="_blank" class="contact-card">
+                                    <i class="fa-brands fa-facebook"></i>
+                                    <span>Facebook</span>
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="https://www.messenger.com" target="_blank" class="contact-card">
+                                    <i class="fa-brands fa-facebook-messenger"></i>
+                                    <span>Messenger</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="text-center">
+                        <a href="@Url.Action("Index", "User")" class="btn btn-primary btn-lg px-5 me-3">
+                            <i class="fa-solid fa-house me-2"></i> Về trang chủ
+                        </a>
+                        <a href="@Url.Action("sanpham", "User")" class="btn btn-outline-primary btn-lg px-5">
+                            <i class="fa-solid fa-shopping-bag me-2"></i> Tiếp tục mua sắm
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="text-center mt-4">
+                <p class="text-muted">
+                    <i class="fa-solid fa-shield-halved me-2"></i>
+                    Thông tin đơn hàng của bạn được bảo mật tuyệt đối
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .success-icon {
+        width: 100px;
+        height: 100px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        animation: scaleIn 0.5s ease;
+    }
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 15px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #e2e8f0;
+    }
+
+    .timeline-item {
+        position: relative;
+        padding-bottom: 2rem;
+        display: flex;
+        gap: 1rem;
+    }
+
+    .timeline-item:last-child {
+        padding-bottom: 0;
+    }
+
+    .timeline-icon {
+        width: 32px;
+        height: 32px;
+        background: white;
+        border: 2px solid #e2e8f0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #94a3b8;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 1;
+    }
+
+    .timeline-item.active .timeline-icon {
+        background: #10b981;
+        border-color: #10b981;
+        color: white;
+    }
+
+    .timeline-content {
+        flex: 1;
+        padding-top: 0.25rem;
+    }
+
+    .contact-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1.5rem 1rem;
+        background: white;
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        text-decoration: none;
+        color: var(--primary-color);
+        transition: var(--transition-base);
+    }
+
+    .contact-card:hover {
+        border-color: var(--accent-color);
+        background: #fff7ed;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(245,158,11,0.2);
+    }
+
+    .contact-card i {
+        font-size: 1.5rem;
+        color: var(--accent-color);
+    }
+
+    .contact-card span {
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .rounded-4 {
+        border-radius: 1.5rem;
+    }
+</style>

@@ -1,0 +1,234 @@
+﻿@model IEnumerable<WebsiteThuCungBento.Models.LOAI>
+
+@{
+    ViewBag.Title = "Quản lý loại sản phẩm";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h3 class="mb-2 fw-bold">
+                <i class="fa-solid fa-layer-group text-primary me-2"></i>
+                Quản Lý Loại Sản Phẩm
+            </h3>
+            <p class="text-muted mb-0">Quản lý danh mục loại thú cưng</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <a href="@Url.Action("Create", "Loai")" class="btn btn-primary">
+                <i class="fa-solid fa-plus me-2"></i>
+                Thêm loại mới
+            </a>
+        </div>
+    </div>
+
+    <!-- Statistics -->
+    <div class="row g-3 mb-4">
+        <div class="col-xl-12">
+            <div class="stat-card bg-primary-subtle">
+                <div class="stat-icon bg-primary">
+                    <i class="fa-solid fa-list"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 class="mb-0">@Model.Count()</h3>
+                    <p class="mb-0">Tổng loại sản phẩm</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="input-group">
+                <span class="input-group-text bg-white">
+                    <i class="fa-solid fa-search"></i>
+                </span>
+                <input type="text" id="searchInput" class="form-control" placeholder="Tìm kiếm loại sản phẩm...">
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Cards Grid -->
+    <div class="row g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="category-card">
+                    <div class="category-icon-wrapper">
+                        <i class="fa-solid fa-paw fa-3x text-primary"></i>
+                    </div>
+                    
+                    <div class="category-info">
+                        <h5 class="category-name mb-2">@item.TENLOAI</h5>
+                        <p class="category-id mb-3">
+                            <i class="fa-solid fa-hashtag me-1"></i>
+                            Mã: @item.MALOAI
+                        </p>
+
+                        <div class="category-actions">
+                            <a href="@Url.Action("Edit", "Loai", new { id = item.MALOAI })" 
+                               class="btn btn-sm btn-outline-primary flex-fill"
+                               title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen me-1"></i>
+                                Sửa
+                            </a>
+                            <a href="@Url.Action("Details", "Loai", new { id = item.MALOAI })" 
+                               class="btn btn-sm btn-outline-info flex-fill"
+                               title="Chi tiết">
+                                <i class="fa-solid fa-eye me-1"></i>
+                                Chi tiết
+                            </a>
+                            <a href="@Url.Action("Delete", "Loai", new { id = item.MALOAI })" 
+                               class="btn btn-sm btn-outline-danger"
+                               title="Xóa"
+                               onclick="return confirm('Bạn có chắc muốn xóa loại này?')">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Empty State -->
+    @if (!Model.Any())
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body text-center py-5">
+                        <i class="fa-solid fa-layer-group fa-4x text-muted mb-3"></i>
+                        <h4 class="text-muted">Chưa có loại sản phẩm nào</h4>
+                        <p class="text-muted mb-4">Hãy thêm loại sản phẩm đầu tiên</p>
+                        <a href="@Url.Action("Create", "Loai")" class="btn btn-primary">
+                            <i class="fa-solid fa-plus me-2"></i>
+                            Thêm loại mới
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .stat-card {
+        padding: 1.5rem;
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .stat-info h3 {
+        font-size: 1.75rem;
+        font-weight: 700;
+    }
+
+    .stat-info p {
+        color: #64748b;
+        font-size: 0.9rem;
+    }
+
+    .category-card {
+        background: white;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .category-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .category-icon-wrapper {
+        height: 150px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+    }
+
+    .category-icon-wrapper i {
+        color: white;
+    }
+
+    .category-info {
+        padding: 1.5rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .category-name {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 0.5rem;
+    }
+
+    .category-id {
+        color: #64748b;
+        font-size: 0.9rem;
+        margin-bottom: 0;
+    }
+
+    .category-actions {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: auto;
+    }
+
+    .bg-primary-subtle {
+        background-color: rgba(13, 110, 253, 0.1);
+    }
+
+    .text-primary {
+        color: #0d6efd !important;
+    }
+</style>
+
+<script>
+    // Search functionality
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        const searchTerm = this.value.toLowerCase();
+        const cards = document.querySelectorAll('.category-card');
+        
+        cards.forEach(card => {
+            const categoryName = card.querySelector('.category-name').textContent.toLowerCase();
+            const categoryId = card.querySelector('.category-id').textContent.toLowerCase();
+            
+            if (categoryName.includes(searchTerm) || categoryId.includes(searchTerm)) {
+                card.closest('.col-xl-3').style.display = '';
+            } else {
+                card.closest('.col-xl-3').style.display = 'none';
+            }
+        });
+    });
+</script>

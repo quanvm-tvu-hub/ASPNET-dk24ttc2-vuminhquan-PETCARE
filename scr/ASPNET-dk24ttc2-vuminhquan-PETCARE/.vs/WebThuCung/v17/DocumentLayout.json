@@ -1,0 +1,62 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\LEARNING\\1. WEB THUCUNG\\WebThuCung\\ASPNET-dk24ttc2-vuminhquan-PETCARE\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ECAEF23C-3E44-4238-9CE2-7F5B527DDA5C}|WebThuCung.csproj|D:\\LEARNING\\1. WEB THUCUNG\\WebThuCung\\ASPNET-dk24ttc2-vuminhquan-PETCARE\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{ECAEF23C-3E44-4238-9CE2-7F5B527DDA5C}|WebThuCung.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ECAEF23C-3E44-4238-9CE2-7F5B527DDA5C}|WebThuCung.csproj|d:\\learning\\1. web thucung\\webthucung\\aspnet-dk24ttc2-vuminhquan-petcare\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{ECAEF23C-3E44-4238-9CE2-7F5B527DDA5C}|WebThuCung.csproj|solutionrelative:views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_LayoutAdmin.cshtml",
+              "DocumentMoniker": "D:\\LEARNING\\1. WEB THUCUNG\\WebThuCung\\ASPNET-dk24ttc2-vuminhquan-PETCARE\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_LayoutAdmin.cshtml",
+              "ToolTip": "D:\\LEARNING\\1. WEB THUCUNG\\WebThuCung\\ASPNET-dk24ttc2-vuminhquan-PETCARE\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_LayoutAdmin.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAFcAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-28T14:44:05.128Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Web.config",
+              "DocumentMoniker": "D:\\LEARNING\\1. WEB THUCUNG\\WebThuCung\\ASPNET-dk24ttc2-vuminhquan-PETCARE\\Web.config",
+              "RelativeDocumentMoniker": "Web.config",
+              "ToolTip": "D:\\LEARNING\\1. WEB THUCUNG\\WebThuCung\\ASPNET-dk24ttc2-vuminhquan-PETCARE\\Web.config",
+              "RelativeToolTip": "Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-11-28T14:39:38.578Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

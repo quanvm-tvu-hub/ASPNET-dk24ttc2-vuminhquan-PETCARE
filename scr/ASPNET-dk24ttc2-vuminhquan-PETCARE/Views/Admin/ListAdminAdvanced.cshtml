@@ -1,0 +1,353 @@
+@model WebsiteThuCungBento.ViewModels.AdminListViewModel
+
+@{
+    ViewBag.Title = "Quản Lý Admin";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Styles {
+    <style>
+        .search-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .admin-table {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .admin-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .status-badge {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .action-buttons .btn {
+            margin: 2px;
+        }
+
+        .pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: #f8f9fa;
+            cursor: pointer;
+        }
+
+        .filter-badge {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 5px 10px;
+            border-radius: 15px;
+            margin-right: 5px;
+            font-size: 0.85rem;
+        }
+    </style>
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h2><i class="fas fa-users-cog"></i> Quản Lý Admin</h2>
+            <p class="text-muted">Quản lý tài khoản quản trị viên</p>
+        </div>
+        <div class="col-md-6 text-right">
+            <a href="@Url.Action("Create")" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Thêm Admin Mới
+            </a>
+            <a href="@Url.Action("Dashboard")" class="btn btn-info">
+                <i class="fas fa-chart-line"></i> Dashboard
+            </a>
+        </div>
+    </div>
+
+    <!-- Thông báo -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <i class="fas fa-check-circle"></i> @TempData["Success"]
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <i class="fas fa-exclamation-triangle"></i> @TempData["Error"]
+        </div>
+    }
+
+    <!-- Form tìm kiếm và lọc -->
+    <div class="search-box">
+        @using (Html.BeginForm("Index", "AdminManagement", FormMethod.Get, new { @class = "form" }))
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label><i class="fas fa-search"></i> Tìm kiếm</label>
+                        @Html.TextBoxFor(m => m.SearchKeyword, new { @class = "form-control", placeholder = "Tên, email, số điện thoại..." })
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label><i class="fas fa-filter"></i> Loại tài khoản</label>
+                        @Html.DropDownListFor(m => m.LoaiTaiKhoan, Model.LoaiTaiKhoanList, "-- Tất cả --", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label><i class="fas fa-sort"></i> Sắp xếp</label>
+                        @Html.DropDownListFor(m => m.SortBy, new SelectList(new[] {
+                            new { Value = "MAADMIN", Text = "Mã" },
+                            new { Value = "HOTEN", Text = "Họ tên" },
+                            new { Value = "EMAIL", Text = "Email" },
+                            new { Value = "NGAYTAO", Text = "Ngày tạo" }
+                        }, "Value", "Text"), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <label>Thứ tự</label>
+                        @Html.DropDownListFor(m => m.SortOrder, new SelectList(new[] {
+                            new { Value = "ASC", Text = "Tăng" },
+                            new { Value = "DESC", Text = "Giảm" }
+                        }, "Value", "Text"), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-search"></i> Tìm kiếm
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hiển thị bộ lọc đang áp dụng -->
+            @if (!string.IsNullOrEmpty(Model.SearchKeyword) || !string.IsNullOrEmpty(Model.LoaiTaiKhoan))
+            {
+                <div class="mt-2">
+                    <strong>Bộ lọc:</strong>
+                    @if (!string.IsNullOrEmpty(Model.SearchKeyword))
+                    {
+                        <span class="filter-badge">
+                            Từ khóa: @Model.SearchKeyword
+                            <a href="@Url.Action("Index")" class="text-danger ml-1">×</a>
+                        </span>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.LoaiTaiKhoan))
+                    {
+                        <span class="filter-badge">
+                            Loại: @Model.LoaiTaiKhoan
+                            <a href="@Url.Action("Index")" class="text-danger ml-1">×</a>
+                        </span>
+                    }
+                    <a href="@Url.Action("Index")" class="btn btn-sm btn-outline-secondary ml-2">
+                        <i class="fas fa-times"></i> Xóa bộ lọc
+                    </a>
+                </div>
+            }
+        }
+    </div>
+
+    <!-- Bảng danh sách -->
+    <div class="admin-table">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead class="thead-light">
+                    <tr>
+                        <th width="80">Avatar</th>
+                        <th>Họ tên</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                        <th>Loại tài khoản</th>
+                        <th>Tên đăng nhập</th>
+                        <th width="100">Trạng thái</th>
+                        <th width="200" class="text-center">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Admins != null && Model.Admins.Any())
+                    {
+                        foreach (var admin in Model.Admins)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="@Url.Content("~/img/" + admin.AVATAR)" 
+                                         class="admin-avatar" 
+                                         onerror="this.src='@Url.Content("~/img/default-avatar.png")'" 
+                                         alt="Avatar" />
+                                </td>
+                                <td>
+                                    <strong>@admin.HOTEN</strong>
+                                    @if (admin.DanhSachVaiTro != null)
+                                    {
+                                        <br /><small class="text-muted">@admin.DanhSachVaiTro</small>
+                                    }
+                                </td>
+                                <td>@admin.EMAIL</td>
+                                <td>@admin.DIENTHOAI</td>
+                                <td>
+                                    <span class="badge badge-info">@admin.TENLOAI</span>
+                                </td>
+                                <td><code>@admin.TENDN</code></td>
+                                <td>
+                                    @if (admin.TRANGTHAI)
+                                    {
+                                        <span class="status-badge badge-success">
+                                            <i class="fas fa-check-circle"></i> Hoạt động
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="status-badge badge-secondary">
+                                            <i class="fas fa-ban"></i> Không hoạt động
+                                        </span>
+                                    }
+                                </td>
+                                <td class="text-center action-buttons">
+                                    <a href="@Url.Action("Edit", new { id = admin.MAADMIN })" 
+                                       class="btn btn-sm btn-warning" 
+                                       title="Sửa">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="@Url.Action("Delete", new { id = admin.MAADMIN })" 
+                                       class="btn btn-sm btn-danger" 
+                                       title="Xóa"
+                                       onclick="return confirm('Bạn có chắc muốn xóa admin này?')">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                    <button type="button" 
+                                            class="btn btn-sm btn-info btn-toggle-status" 
+                                            data-id="@admin.MAADMIN"
+                                            title="Thay đổi trạng thái">
+                                        <i class="fas fa-sync"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="8" class="text-center py-5">
+                                <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                                <p class="text-muted">Không tìm thấy admin nào</p>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Phân trang -->
+        @if (Model.TotalPages > 1)
+        {
+            <div class="pagination-container">
+                <div>
+                    Hiển thị <strong>@((Model.CurrentPage - 1) * Model.PageSize + 1)</strong> 
+                    đến <strong>@Math.Min(Model.CurrentPage * Model.PageSize, Model.TotalRecords)</strong> 
+                    trong tổng số <strong>@Model.TotalRecords</strong> bản ghi
+                </div>
+                <nav>
+                    <ul class="pagination mb-0">
+                        @if (Model.CurrentPage > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Index", new { 
+                                    CurrentPage = Model.CurrentPage - 1,
+                                    SearchKeyword = Model.SearchKeyword,
+                                    LoaiTaiKhoan = Model.LoaiTaiKhoan,
+                                    SortBy = Model.SortBy,
+                                    SortOrder = Model.SortOrder
+                                })">Trước</a>
+                            </li>
+                        }
+
+                        @for (int i = Math.Max(1, Model.CurrentPage - 2); i <= Math.Min(Model.TotalPages, Model.CurrentPage + 2); i++)
+                        {
+                            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                                <a class="page-link" href="@Url.Action("Index", new { 
+                                    CurrentPage = i,
+                                    SearchKeyword = Model.SearchKeyword,
+                                    LoaiTaiKhoan = Model.LoaiTaiKhoan,
+                                    SortBy = Model.SortBy,
+                                    SortOrder = Model.SortOrder
+                                })">@i</a>
+                            </li>
+                        }
+
+                        @if (Model.CurrentPage < Model.TotalPages)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Index", new { 
+                                    CurrentPage = Model.CurrentPage + 1,
+                                    SearchKeyword = Model.SearchKeyword,
+                                    LoaiTaiKhoan = Model.LoaiTaiKhoan,
+                                    SortBy = Model.SortBy,
+                                    SortOrder = Model.SortOrder
+                                })">Sau</a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Xử lý thay đổi trạng thái
+            $('.btn-toggle-status').click(function() {
+                var btn = $(this);
+                var adminId = btn.data('id');
+                
+                if (confirm('Bạn có chắc muốn thay đổi trạng thái admin này?')) {
+                    $.ajax({
+                        url: '@Url.Action("ToggleStatus")',
+                        type: 'POST',
+                        data: { id: adminId },
+                        success: function(response) {
+                            if (response.success) {
+                                location.reload();
+                            } else {
+                                alert('Có lỗi: ' + response.message);
+                            }
+                        },
+                        error: function() {
+                            alert('Có lỗi khi thay đổi trạng thái');
+                        }
+                    });
+                }
+            });
+
+            // Auto-dismiss alerts
+            setTimeout(function() {
+                $('.alert').fadeOut('slow');
+            }, 5000);
+        });
+    </script>
+}

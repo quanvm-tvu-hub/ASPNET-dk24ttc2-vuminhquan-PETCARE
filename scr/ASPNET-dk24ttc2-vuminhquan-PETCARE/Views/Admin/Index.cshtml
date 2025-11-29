@@ -1,0 +1,491 @@
+﻿@model IEnumerable<WebsiteThuCungBento.Models.DONDATHANG>
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Welcome Banner -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="welcome-banner">
+            <div class="welcome-content">
+                <div>
+                    <h1 class="mb-2">Xin chào, Quản trị viên! 👋</h1>
+                    <p class="mb-0">Chào mừng bạn quay trở lại. Đây là tổng quan hệ thống của bạn.</p>
+                </div>
+                <div class="welcome-date">
+                    <i class="fa-solid fa-calendar-days me-2"></i>
+                    <span id="currentDate"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Stats Cards -->
+<div class="row g-4 mb-4">
+    <div class="col-xl-3 col-md-6">
+        <div class="stat-card stat-card-primary">
+            <div class="stat-icon">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <div class="stat-details">
+                <h3 class="stat-number">@ViewBag.TongKhachHang</h3>
+                <p class="stat-label">Khách hàng</p>
+                <div class="stat-trend positive">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    <span>Tổng số khách hàng</span>
+                </div>
+            </div>
+            <a href="@Url.Action("Index", "KhachHang")" class="stat-link">
+                Xem chi tiết <i class="fa-solid fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+        <div class="stat-card stat-card-success">
+            <div class="stat-icon">
+                <i class="fa-solid fa-box"></i>
+            </div>
+            <div class="stat-details">
+                <h3 class="stat-number">@ViewBag.TongSanPham</h3>
+                <p class="stat-label">Sản phẩm</p>
+                <div class="stat-trend positive">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    <span>Tổng số sản phẩm</span>
+                </div>
+            </div>
+            <a href="@Url.Action("Index", "SanPham")" class="stat-link">
+                Quản lý <i class="fa-solid fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+        <div class="stat-card stat-card-warning">
+            <div class="stat-icon">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+            </div>
+            <div class="stat-details">
+                <h3 class="stat-number">@ViewBag.TongDonHang</h3>
+                <p class="stat-label">Đơn hàng</p>
+                <div class="stat-trend positive">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    <span>Tổng số đơn hàng</span>
+                </div>
+            </div>
+            <a href="@Url.Action("DonDatHang", "DonHang")" class="stat-link">
+                Xem đơn <i class="fa-solid fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+        <div class="stat-card stat-card-info">
+            <div class="stat-icon">
+                <i class="fa-solid fa-dollar-sign"></i>
+            </div>
+            <div class="stat-details">
+                <h3 class="stat-number">@string.Format("{0:N0}", ViewBag.TongDoanhThu)</h3>
+                <p class="stat-label">Doanh thu (VNĐ)</p>
+                <div class="stat-trend positive">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    <span>Tổng doanh thu</span>
+                </div>
+            </div>
+            <a href="@Url.Action("Index", "ThongKe")" class="stat-link">
+                Báo cáo <i class="fa-solid fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Charts Row -->
+<div class="row g-4 mb-4">
+    <div class="col-lg-8">
+        <div class="dashboard-card">
+            <div class="card-header-custom">
+                <h5 class="mb-0">
+                    <i class="fa-solid fa-chart-line me-2"></i>
+                    Biểu đồ doanh thu (Demo)
+                </h5>
+            </div>
+            <div class="card-body-custom">
+                <canvas id="revenueChart" height="80"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="dashboard-card">
+            <div class="card-header-custom">
+                <h5 class="mb-0">
+                    <i class="fa-solid fa-chart-pie me-2"></i>
+                    Danh mục sản phẩm (Demo)
+                </h5>
+            </div>
+            <div class="card-body-custom">
+                <canvas id="categoryChart" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions & Recent Orders -->
+<div class="row g-4">
+    <div class="col-lg-4">
+        <div class="dashboard-card">
+            <div class="card-header-custom">
+                <h5 class="mb-0">
+                    <i class="fa-solid fa-bolt me-2"></i>
+                    Thao tác nhanh
+                </h5>
+            </div>
+            <div class="card-body-custom">
+                <div class="quick-actions">
+                    <a href="@Url.Action("Create", "SanPham")" class="quick-action-item">
+                        <div class="quick-action-icon bg-primary">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <span>Thêm sản phẩm</span>
+                    </a>
+                    <a href="@Url.Action("DonDatHang", "DonHang")" class="quick-action-item">
+                        <div class="quick-action-icon bg-warning">
+                            <i class="fa-solid fa-clipboard-list"></i>
+                        </div>
+                        <span>Xem đơn hàng</span>
+                    </a>
+                    <a href="@Url.Action("Index", "KhachHang")" class="quick-action-item">
+                        <div class="quick-action-icon bg-success">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </div>
+                        <span>Thêm khách hàng</span>
+                    </a>
+                    <a href="@Url.Action("Index", "ThongKe")" class="quick-action-item">
+                        <div class="quick-action-icon bg-info">
+                            <i class="fa-solid fa-chart-bar"></i>
+                        </div>
+                        <span>Xem thống kê</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-8">
+        <div class="dashboard-card">
+            <div class="card-header-custom">
+                <h5 class="mb-0">
+                    <i class="fa-solid fa-clock-rotate-left me-2"></i>
+                    Đơn hàng gần đây
+                </h5>
+                <a href="@Url.Action("DonDatHang", "DonHang")" class="btn btn-sm btn-outline-primary">
+                    Xem tất cả
+                </a>
+            </div>
+            <div class="card-body-custom p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Mã đơn</th>
+                                <th>Khách hàng</th>
+                                <th>Ngày đặt</th>
+                                <th>Tổng tiền</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td><strong>#@item.MADH</strong></td>
+                                        <td>
+                                            @if (item.KHACHHANG != null)
+                                            {
+                                                @item.KHACHHANG.HOTENKH
+                                            }
+                                            else
+                                            {
+                                                <span class="text-muted">Khách vãng lai</span>
+                                            }
+                                        </td>
+                                        <td>@String.Format("{0:dd/MM/yyyy}", item.NGAYDAT)</td>
+                                        <td>
+                                            <strong>
+                                                @if (item.CTDONDATHANGs != null)
+                                                {
+                                                    @String.Format("{0:N0} đ", item.CTDONDATHANGs.Sum(n => (decimal?)n.SOLUONG * (decimal?)n.DONGIA) ?? 0)
+                                                }
+                                                else
+                                                {
+                                                    <span>0 đ</span>
+                                                }
+                                            </strong>
+                                        </td>
+                                        <td>
+                                            @if (item.DATHANHTOAN == true)
+                                            {
+                                                <span class="badge bg-success">Đã thanh toán</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-warning">Chưa thanh toán</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("Chitietdonhang", "DonHang", new { id = item.MADH })" class="btn btn-sm btn-outline-primary">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="6" class="text-center py-4">Chưa có đơn hàng nào.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Current Date
+    document.getElementById('currentDate').textContent = new Date().toLocaleDateString('vi-VN', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+
+    // Revenue Chart (Static Demo Data)
+    const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+    new Chart(revenueCtx, {
+        type: 'line',
+        data: {
+            labels: ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'],
+            datasets: [{
+                label: 'Doanh thu (triệu đồng)',
+                data: [12, 19, 15, 25, 22, 30, 28],
+                borderColor: '#0f172a',
+                backgroundColor: 'rgba(15, 23, 42, 0.1)',
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Category Chart (Static Demo Data)
+    const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+    new Chart(categoryCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Thức ăn', 'Phụ kiện', 'Dịch vụ', 'Khác'],
+            datasets: [{
+                data: [35, 25, 30, 10],
+                backgroundColor: ['#0f172a', '#f59e0b', '#10b981', '#6366f1']
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+</script>
+
+<style>
+    .welcome-banner {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: white;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .welcome-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .welcome-date {
+        background: rgba(255,255,255,0.1);
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        font-size: 0.9rem;
+    }
+
+    .stat-card {
+        background: white;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: var(--card-color);
+    }
+
+    .stat-card-primary { --card-color: #0f172a; }
+    .stat-card-success { --card-color: #10b981; }
+    .stat-card-warning { --card-color: #f59e0b; }
+    .stat-card-info { --card-color: #3b82f6; }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        background: var(--card-color);
+        color: white;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+        color: #64748b;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-trend {
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .stat-trend.positive {
+        color: #10b981;
+    }
+
+    .stat-link {
+        display: inline-flex;
+        align-items: center;
+        color: var(--card-color);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-top: 1rem;
+    }
+
+    .dashboard-card {
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        overflow: hidden;
+    }
+
+    .card-header-custom {
+        padding: 1.5rem;
+        border-bottom: 1px solid #e2e8f0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .card-body-custom {
+        padding: 1.5rem;
+    }
+
+    .quick-actions {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .quick-action-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1.5rem 1rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        text-decoration: none;
+        color: #0f172a;
+        transition: all 0.3s ease;
+    }
+
+    .quick-action-item:hover {
+        border-color: #f59e0b;
+        background: #fff7ed;
+        transform: translateY(-3px);
+    }
+
+    .quick-action-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.25rem;
+    }
+
+    .table th {
+        font-weight: 600;
+        color: #64748b;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        padding: 1rem;
+    }
+
+    .table td {
+        padding: 1rem;
+        vertical-align: middle;
+    }
+</style>

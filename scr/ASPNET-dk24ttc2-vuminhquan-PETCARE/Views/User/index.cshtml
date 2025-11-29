@@ -1,0 +1,179 @@
+﻿@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<!-- Hero Section -->
+<section class="container my-5">
+    <div class="position-relative overflow-hidden rounded-3" style="height: 600px;">
+        <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" 
+             alt="Happy Dog" 
+             class="w-100 h-100 object-fit-cover">
+        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" 
+             style="background: linear-gradient(to right, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.2));">
+            <div class="container">
+                <div class="text-white" style="max-width: 600px;">
+                    <span class="text-warning fw-bold mb-2 d-block" style="letter-spacing: 2px;">CHÀO MỪNG ĐẾN VỚI BENTO</span>
+                    <h1 class="display-3 fw-bold mb-3">Thiên đường cho<br>Thú cưng của bạn</h1>
+                    <p class="fs-5 mb-4 opacity-75">Chúng tôi cung cấp dịch vụ chăm sóc, spa, khách sạn và các sản phẩm chất lượng cao nhất dành cho người bạn bốn chân của bạn.</p>
+                    <div class="d-flex gap-3">
+                        <a href="@Url.Action("sanpham", "User")" class="btn btn-primary btn-lg">Mua sắm ngay</a>
+                        <a href="@Url.Action("khachsanthucung", "User")" class="btn btn-outline-light btn-lg">Đặt lịch ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="container py-5">
+    <div class="section-header">
+        <h2 class="section-title">Dịch Vụ Của Chúng Tôi</h2>
+        <p class="section-subtitle">Trải nghiệm dịch vụ chăm sóc thú cưng đẳng cấp 5 sao</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fa-solid fa-hotel"></i>
+                </div>
+                <h3 class="mb-3">Khách Sạn Thú Cưng</h3>
+                <p class="text-muted mb-4">Môi trường lưu trú sạch sẽ, thoáng mát, đầy đủ tiện nghi giúp thú cưng thoải mái như ở nhà.</p>
+                <a href="@Url.Action("khachsanthucung", "User")" class="btn btn-outline-primary btn-sm">Xem chi tiết</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fa-solid fa-scissors"></i>
+                </div>
+                <h3 class="mb-3">Spa & Grooming</h3>
+                <p class="text-muted mb-4">Dịch vụ cắt tỉa, tắm gội, vệ sinh chuyên nghiệp giúp thú cưng luôn sạch đẹp và thơm tho.</p>
+                <a href="@Url.Action("spathucung", "User")" class="btn btn-outline-primary btn-sm">Xem chi tiết</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fa-solid fa-bone"></i>
+                </div>
+                <h3 class="mb-3">Cửa Hàng Thức Ăn</h3>
+                <p class="text-muted mb-4">Cung cấp đa dạng các loại thức ăn, phụ kiện chính hãng, đảm bảo dinh dưỡng và an toàn.</p>
+                <a href="@Url.Action("sanpham", "User")" class="btn btn-outline-primary btn-sm">Xem chi tiết</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products -->
+<section class="container py-5 bg-light rounded-3 my-5">
+    <div class="section-header">
+        <h2 class="section-title">Sản Phẩm Nổi Bật</h2>
+        <p class="section-subtitle">Những sản phẩm được yêu thích nhất tại Bento Pet Shop</p>
+    </div>
+    
+    <div class="product-grid">
+        @foreach (var i in Model)
+        {
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <a href="@Url.Action("Chitiet", "User", new { id = i.MASP })">
+                        <img alt="@i.TENSP" src="@Url.Content("~/img/" + @i.HINHANH)" class="product-image" />
+                    </a>
+                    <div class="product-actions">
+                        <a href="@Url.Action("ThemGiohang", "GioHang", new { @iMASP = i.MASP, @strURL = Request.Url.ToString() })" class="action-btn" title="Thêm vào giỏ">
+                            <i class="fa-solid fa-cart-plus"></i>
+                        </a>
+                        <a href="@Url.Action("Chitiet", "User", new { id = i.MASP })" class="action-btn" title="Xem chi tiết">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="product-details">
+                    <span class="product-category">Thú cưng</span>
+                    <a href="@Url.Action("Chitiet", "User", new { id = i.MASP })" class="product-title" title="@i.TENSP">
+                        @i.TENSP
+                    </a>
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+                        <span class="product-price">@String.Format("{0:0,0}", i.DONGIABAN) đ</span>
+                        <div class="text-warning" style="font-size: 0.8rem;">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    
+    <div class="text-center mt-5">
+        <a href="@Url.Action("sanpham", "User")" class="btn btn-primary btn-lg">Xem tất cả sản phẩm</a>
+    </div>
+</section>
+
+<!-- News / Videos Section -->
+<section class="container py-5 mb-5">
+    <div class="section-header">
+        <h2 class="section-title">Góc Chia Sẻ</h2>
+        <p class="section-subtitle">Kiến thức và video thú vị về chăm sóc thú cưng</p>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/yNLpKqiEiOA" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="card-body">
+                    <div class="text-muted mb-2 small"><i class="fa fa-calendar me-2"></i> 15/10/2025</div>
+                    <h5 class="card-title fw-bold">Top 15 giống chó cảnh đẹp</h5>
+                    <p class="card-text text-muted">Khám phá những giống chó đáng yêu và phổ biến nhất hiện nay.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/KJxbN4Cv8jQ" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="card-body">
+                    <div class="text-muted mb-2 small"><i class="fa fa-calendar me-2"></i> 13/10/2025</div>
+                    <h5 class="card-title fw-bold">Nhạc Ru Ngủ Cho Cún</h5>
+                    <p class="card-text text-muted">Những giai điệu nhẹ nhàng giúp cún cưng của bạn thư giãn và ngủ ngon.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/2OCuPHpUDUI" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="card-body">
+                    <div class="text-muted mb-2 small"><i class="fa fa-calendar me-2"></i> 14/11/2025</div>
+                    <h5 class="card-title fw-bold">Dấu Hiệu Mèo Bị Stress</h5>
+                    <p class="card-text text-muted">Nhận biết sớm các dấu hiệu căng thẳng ở mèo để có biện pháp xử lý kịp thời.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Essential Scripts -->
+<script language="javascript" src="~/Scripts/ajax-cart5eef.js"></script>
+<script language="javascript" src="~/Scripts/api.jquery.js"></script>
+<script language="javascript" src="~/Scripts/option_selection.js"></script>
+<script language="javascript" src="~/Scripts/fastclick.min5eef.js"></script>
+<script language="javascript" src="~/Scripts/script5eef.js"></script>
+<script language="javascript" src="~/Scripts/timber5eef.js"></script>
+<script language="javascript" src="~/Scripts/jquery.fancybox.min.js"></script>
+<script language="javascript" src="~/Scripts/handlebars.min5eef.js"></script>
+<script language="javascript" src="~/Scripts/hoverchangeimage.js"></script>
+<script language="javascript" src="~/Scripts/backtotop.js"></script>
+<script language="javascript" src="~/Scripts/triggerzoom.js"></script>

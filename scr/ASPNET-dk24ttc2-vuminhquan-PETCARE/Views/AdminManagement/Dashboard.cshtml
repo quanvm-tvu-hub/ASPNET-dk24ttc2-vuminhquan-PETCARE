@@ -1,0 +1,323 @@
+@model WebsiteThuCungBento.ViewModels.AdminDashboardViewModel
+
+@{
+    ViewBag.Title = "Dashboard Quản Lý Admin";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Styles {
+    <style>
+        .dashboard-card {
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .stat-card {
+            padding: 20px;
+            border-left: 4px solid;
+        }
+
+        .stat-card.primary { border-left-color: #007bff; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .stat-card.success { border-left-color: #28a745; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; }
+        .stat-card.warning { border-left-color: #ffc107; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; }
+        .stat-card.info { border-left-color: #17a2b8; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; }
+        .stat-card.danger { border-left-color: #dc3545; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            opacity: 0.3;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+
+        .recent-activity {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .activity-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+
+        .activity-item:hover {
+            background: #f8f9fa;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .badge-status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+    </style>
+}
+
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2><i class="fas fa-tachometer-alt"></i> Dashboard Quản Lý Admin</h2>
+            <p class="text-muted">Tổng quan hệ thống quản trị viên</p>
+        </div>
+    </div>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <i class="fas fa-exclamation-triangle"></i> @ViewBag.Error
+        </div>
+    }
+
+    <!-- Thống kê tổng quan -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="dashboard-card stat-card primary position-relative">
+                <i class="fas fa-users stat-icon"></i>
+                <div class="stat-label">Tổng Số Admin</div>
+                <div class="stat-number">@Model.TongSoAdmin</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dashboard-card stat-card success position-relative">
+                <i class="fas fa-user-check stat-icon"></i>
+                <div class="stat-label">Admin Hoạt Động</div>
+                <div class="stat-number">@Model.AdminHoatDong</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dashboard-card stat-card warning position-relative">
+                <i class="fas fa-user-times stat-icon"></i>
+                <div class="stat-label">Admin Không Hoạt Động</div>
+                <div class="stat-number">@Model.AdminKhongHoatDong</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="dashboard-card stat-card info position-relative">
+                <i class="fas fa-sign-in-alt stat-icon"></i>
+                <div class="stat-label">Đăng Nhập Tuần Này</div>
+                <div class="stat-number">@Model.DangNhapTuan</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Biểu đồ thống kê theo loại -->
+        <div class="col-md-6">
+            <div class="dashboard-card p-4">
+                <h5 class="mb-3"><i class="fas fa-chart-pie"></i> Thống Kê Theo Loại Tài Khoản</h5>
+                <div class="chart-container">
+                    <canvas id="chartLoaiTaiKhoan"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin mới nhất -->
+        <div class="col-md-6">
+            <div class="dashboard-card p-4">
+                <h5 class="mb-3"><i class="fas fa-user-plus"></i> Admin Mới Nhất</h5>
+                <div class="recent-activity">
+                    @if (Model.AdminGanDay != null && Model.AdminGanDay.Any())
+                    {
+                        foreach (var admin in Model.AdminGanDay)
+                        {
+                            <div class="activity-item d-flex align-items-center">
+                                <img src="@Url.Content("~/img/" + admin.AVATAR)" 
+                                     class="rounded-circle" 
+                                     width="40" 
+                                     height="40" 
+                                     style="object-fit: cover; margin-right: 15px;"
+                                     onerror="this.src='@Url.Content("~/img/default-avatar.png")'" />
+                                <div class="flex-grow-1">
+                                    <strong>@admin.HOTEN</strong>
+                                    <div class="small text-muted">
+                                        @admin.EMAIL
+                                        @if (admin.NGAYTAO.HasValue)
+                                        {
+                                            <span class="ml-2">
+                                                <i class="far fa-calendar"></i> @admin.NGAYTAO.Value.ToString("dd/MM/yyyy")
+                                            </span>
+                                        }
+                                    </div>
+                                </div>
+                                @if (admin.TRANGTHAI)
+                                {
+                                    <span class="badge badge-success">Hoạt động</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-secondary">Không hoạt động</span>
+                                }
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-muted text-center py-4">Chưa có admin mới</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hoạt động gần đây -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="dashboard-card p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5><i class="fas fa-history"></i> Hoạt Động Gần Đây</h5>
+                    <a href="@Url.Action("Index", "ActivityLog")" class="btn btn-sm btn-outline-primary">
+                        Xem tất cả <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Admin</th>
+                                <th>Hoạt Động</th>
+                                <th>Mô Tả</th>
+                                <th>Thời Gian</th>
+                                <th>IP</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.HoatDongGanDay != null && Model.HoatDongGanDay.Any())
+                            {
+                                foreach (var log in Model.HoatDongGanDay)
+                                {
+                                    <tr>
+                                        <td><strong>@log.TenAdmin</strong></td>
+                                        <td>
+                                            <span class="badge badge-info">@log.LOAIHOATDONG</span>
+                                        </td>
+                                        <td>@log.MOTA</td>
+                                        <td>
+                                            <small class="text-muted">
+                                                @log.NGAYTHUCHIEN.ToString("dd/MM/yyyy HH:mm")
+                                            </small>
+                                        </td>
+                                        <td><code>@log.DIACHI_IP</code></td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted">Chưa có hoạt động nào</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="dashboard-card p-4">
+                <h5 class="mb-3"><i class="fas fa-bolt"></i> Thao Tác Nhanh</h5>
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="@Url.Action("Create", "AdminManagement")" class="btn btn-primary btn-block mb-2">
+                            <i class="fas fa-user-plus"></i> Tạo Admin Mới
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="@Url.Action("Index", "AdminManagement")" class="btn btn-info btn-block mb-2">
+                            <i class="fas fa-list"></i> Danh Sách Admin
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="@Url.Action("Index", "ActivityLog")" class="btn btn-warning btn-block mb-2">
+                            <i class="fas fa-history"></i> Lịch Sử Hoạt Động
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="@Url.Action("DSPhanQuyen", "AdminPQ")" class="btn btn-success btn-block mb-2">
+                            <i class="fas fa-key"></i> Phân Quyền
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Biểu đồ thống kê theo loại tài khoản
+            @if (Model.ThongKeTheoLoai != null && Model.ThongKeTheoLoai.Any())
+            {
+                <text>
+                var ctx = document.getElementById('chartLoaiTaiKhoan').getContext('2d');
+                var chart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: [@Html.Raw(string.Join(",", Model.ThongKeTheoLoai.Keys.Select(k => "'" + k + "'")))],
+                        datasets: [{
+                            data: [@Html.Raw(string.Join(",", Model.ThongKeTheoLoai.Values))],
+                            backgroundColor: [
+                                'rgba(102, 126, 234, 0.8)',
+                                'rgba(17, 153, 142, 0.8)',
+                                'rgba(240, 147, 251, 0.8)',
+                                'rgba(79, 172, 254, 0.8)',
+                                'rgba(250, 112, 154, 0.8)'
+                            ],
+                            borderWidth: 2,
+                            borderColor: '#fff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+                </text>
+            }
+        });
+    </script>
+}
