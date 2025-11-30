@@ -1,0 +1,36 @@
+@model IEnumerable<WebThuCungNew.Models.Service>
+
+@{
+    ViewData["Title"] = "Dịch Vụ";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-gradient display-5">Dịch Vụ Cao Cấp Của Chúng Tôi</h1>
+        <p class="text-muted fs-5">Chọn dịch vụ chăm sóc hoàn hảo cho người bạn lông xù của bạn</p>
+    </div>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 glass-card border-0 overflow-hidden">
+                    <div style="height: 200px; overflow: hidden;">
+                        <img src="@item.ImageUrl" class="card-img-top" alt="@item.ServiceName" style="object-fit: cover; height: 100%; width: 100%;">
+                    </div>
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="mb-2">
+                            <span class="badge bg-primary rounded-pill px-3 py-2">Dịch Vụ</span>
+                        </div>
+                        <h3 class="card-title fw-bold mb-2">@item.ServiceName</h3>
+                        <p class="card-text text-muted flex-grow-1">@item.Description</p>
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+                            <h4 class="text-primary fw-bold mb-0">@item.Price.ToString("C0") VNĐ</h4>
+                            <a asp-action="Book" asp-route-serviceId="@item.ServiceId" class="btn btn-primary px-4 shadow-sm">Đặt Ngay</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,54 @@
+@startuml
+title Use Case Diagram - Hệ Thống Minh Quân Pet Service (Tổng Quát)
+
+skinparam linetype ortho
+
+actor "Khách" as Guest
+actor "Người Dùng" as User
+actor "Nhân Viên" as Sitter
+actor "Quản Trị Viên" as Admin
+
+' Kế thừa
+User --|> Guest
+Sitter --|> User
+Admin --|> User
+
+rectangle "Hệ Thống Minh Quân Pet Service" {
+  ' Guest
+  (Xem Dịch Vụ) as UC1
+  (Đặt Dịch Vụ) as UC2
+  
+  ' User
+  (Đăng Ký) as UC3
+  (Đăng Nhập) as UC4
+  (Quản Lý Thú Cưng) as UC5
+  (Xem Lịch Sử) as UC6
+  
+  ' Sitter
+  (Xem Lịch Làm Việc) as UC7
+  (Cập Nhật Trạng Thái) as UC8
+  
+  ' Admin
+  (Quản Lý Người Dùng) as UC9
+  (Quản Lý Dịch Vụ) as UC10
+  (Quản Lý Đặt Lịch) as UC11
+  (Xem Báo Cáo) as UC12
+}
+
+Guest --> UC1
+Guest --> UC2
+
+User --> UC3
+User --> UC4
+User --> UC5
+User --> UC6
+
+Sitter --> UC7
+Sitter --> UC8
+
+Admin --> UC9
+Admin --> UC10
+Admin --> UC11
+Admin --> UC12
+
+@enduml

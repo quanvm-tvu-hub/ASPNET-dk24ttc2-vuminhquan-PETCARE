@@ -1,0 +1,221 @@
+/* Global Styles */
+html {
+    font-size: 14px;
+    height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin-bottom: 60px;
+    /* Mesh Gradient Background */
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    background-attachment: fixed;
+    background-size: cover;
+    color: #2c3e50;
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+    min-height: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Glassmorphism Utilities */
+.glass-card {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+}
+
+.card {
+    border: none;
+    background: transparent;
+    /* Use glass-card class instead or mixin */
+    @extend .glass-card;
+    /* CSS doesn't support extend natively, so we apply styles directly */
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background: rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px 16px 0 0 !important;
+    font-weight: 600;
+    color: #4a4a4a;
+}
+
+.card-footer {
+    background: rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0 0 16px 16px !important;
+}
+
+/* Navbar */
+.navbar {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+    background: -webkit-linear-gradient(45deg, #4158D0, #C850C0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-link {
+    font-weight: 600;
+    color: #555 !important;
+    margin: 0 10px;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #C850C0 !important;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #C850C0;
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 50px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-primary {
+    background-image: linear-gradient(45deg, #4158D0 0%, #C850C0 100%);
+    box-shadow: 0 4px 15px rgba(65, 88, 208, 0.4);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-image: linear-gradient(45deg, #C850C0 0%, #4158D0 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(65, 88, 208, 0.6);
+}
+
+.btn-success {
+    background-image: linear-gradient(45deg, #11998e 0%, #38ef7d 100%);
+    box-shadow: 0 4px 15px rgba(17, 153, 142, 0.4);
+}
+
+.btn-danger {
+    background-image: linear-gradient(45deg, #FF416C 0%, #FF4B2B 100%);
+    box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
+}
+
+.btn-warning {
+    background-image: linear-gradient(45deg, #f12711 0%, #f5af19 100%);
+    color: white;
+}
+
+/* Forms */
+.form-control,
+.form-select {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(200, 200, 200, 0.5);
+    border-radius: 12px;
+    padding: 12px 15px;
+    transition: all 0.3s;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background: white;
+    box-shadow: 0 0 0 4px rgba(200, 80, 192, 0.1);
+    border-color: #C850C0;
+}
+
+/* Tables */
+.table-container {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.table {
+    background: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0;
+    backdrop-filter: blur(10px);
+}
+
+.table thead th {
+    background: rgba(65, 88, 208, 0.1);
+    color: #4158D0;
+    border-bottom: 2px solid rgba(65, 88, 208, 0.2);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    padding: 15px;
+}
+
+.table tbody td {
+    padding: 15px;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Footer */
+.footer {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Utilities */
+.text-gradient {
+    background: -webkit-linear-gradient(45deg, #4158D0, #C850C0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.shadow-soft {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+}

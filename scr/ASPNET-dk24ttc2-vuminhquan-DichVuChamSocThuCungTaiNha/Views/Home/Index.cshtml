@@ -1,0 +1,145 @@
+﻿@{
+    ViewData["Title"] = "Trang Chủ";
+}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #FF6B6B 0%, #FFB88C 50%, #FFA07A 100%);
+        background-attachment: fixed;
+    }
+    
+    .hero-section {
+        min-height: 500px;
+        padding: 80px 0;
+        color: white;
+    }
+    
+    .service-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    }
+</style>
+
+<!-- Hero Section -->
+<div class="hero-section text-center">
+    <div class="container">
+        <h1 style="font-size: 3.5rem; font-weight: 800;">🐾 Minh Quân Pet Service</h1>
+        <p style="font-size: 1.3rem; margin: 20px 0;">Chăm sóc chuyên nghiệp - An tâm tuyệt đối</p>
+        <a href="#services" class="btn btn-light btn-lg px-5 py-3" style="border-radius: 50px; margin: 10px;">Đặt Dịch Vụ Ngay</a>
+    </div>
+</div>
+
+<!-- Services Section -->
+<div id="services" class="py-5" style="background: white;">
+    <div class="container">
+        <h2 class="text-center mb-5" style="font-size: 2.5rem; font-weight: 700;">Dịch Vụ Của Chúng Tôi</h2>
+        
+        <div class="row">
+            <!-- Service 1 -->
+            <div class="col-md-4">
+                <div class="service-card" onclick="window.location.href='/Booking/Book?serviceId=1'">
+                    <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=400" 
+                         style="width: 100%; height: 250px; object-fit: cover;">
+                    <div style="padding: 25px;">
+                        <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 15px;">Chăm sóc tại nhà 1 giờ</h3>
+                        <p style="color: #666; margin-bottom: 20px;">Nhân viên đến nhà chăm sóc thú cưng trong 1 giờ</p>
+                        <div style="font-size: 1.8rem; font-weight: 700; color: #FF6B6B; margin-bottom: 15px;">100,000 VNĐ</div>
+                        <button class="btn btn-primary w-100" style="border-radius: 50px; padding: 12px;">Đặt Ngay</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="col-md-4">
+                <div class="service-card" onclick="window.location.href='/Booking/Book?serviceId=2'">
+                    <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?q=80&w=400" 
+                         style="width: 100%; height: 250px; object-fit: cover;">
+                    <div style="padding: 25px;">
+                        <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 15px;">Dắt đi dạo</h3>
+                        <p style="color: #666; margin-bottom: 20px;">Dắt thú cưng đi dạo quanh khu vực</p>
+                        <div style="font-size: 1.8rem; font-weight: 700; color: #FF6B6B; margin-bottom: 15px;">50,000 VNĐ</div>
+                        <button class="btn btn-primary w-100" style="border-radius: 50px; padding: 12px;">Đặt Ngay</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="col-md-4">
+                <div class="service-card" onclick="window.location.href='/Booking/Book?serviceId=3'">
+                    <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=400" 
+                         style="width: 100%; height: 250px; object-fit: cover;">
+                    <div style="padding: 25px;">
+                        <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 15px;">Trông giữ cả ngày</h3>
+                        <p style="color: #666; margin-bottom: 20px;">Trông giữ thú cưng tại nhà nhân viên hoặc tại shop</p>
+                        <div style="font-size: 1.8rem; font-weight: 700; color: #FF6B6B; margin-bottom: 15px;">300,000 VNĐ</div>
+                        <button class="btn btn-primary w-100" style="border-radius: 50px; padding: 12px;">Đặt Ngay</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features -->
+<div class="py-5" style="background: #f8f9fa;">
+    <div class="container">
+        <h2 class="text-center mb-5" style="font-size: 2.5rem; font-weight: 700;">Tại Sao Chọn Chúng Tôi?</h2>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div style="background: white; border-radius: 20px; padding: 40px; margin-bottom: 20px;">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">❤️</div>
+                    <h4>Chăm Sóc Tận Tâm</h4>
+                    <p>Đội ngũ yêu thương động vật</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div style="background: white; border-radius: 20px; padding: 40px; margin-bottom: 20px;">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🛡️</div>
+                    <h4>An Toàn Tuyệt Đối</h4>
+                    <p>Bảo hiểm toàn diện</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div style="background: white; border-radius: 20px; padding: 40px; margin-bottom: 20px;">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">💎</div>
+                    <h4>Giá Cả Minh Bạch</h4>
+                    <p>Không phí ẩn</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA -->
+<div class="py-5 text-center text-white" style="background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);">
+    <div class="container">
+        <h2 class="display-4 fw-bold mb-4">Sẵn Sàng Đặt Dịch Vụ?</h2>
+        <p class="lead mb-4">Hàng nghìn khách hàng đã tin tưởng!</p>
+        <a href="#services" class="btn btn-light btn-lg px-5 py-3" style="border-radius: 50px; color: #FF6B6B;">
+            Đặt Ngay - Miễn Phí Tư Vấn
+        </a>
+    </div>
+</div>
+
+<script>
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+</script>

@@ -1,0 +1,44 @@
+@startuml
+title Use Case Diagram - Nhân Viên
+
+skinparam linetype ortho
+
+actor "Khách" as Guest
+actor "Người Dùng" as User
+actor "Nhân Viên" as Sitter
+
+' Kế thừa
+User --|> Guest
+Sitter --|> User
+
+rectangle "Hệ Thống Nhân Viên Minh Quân Pet Service" {
+  
+  (Đăng Nhập) as UC1
+  
+  package "Lịch Làm Việc" {
+    (Xem Lịch) as UC2
+    (Xem Chi Tiết Đơn) as UC3
+  }
+  
+  package "Cập Nhật" {
+    (Xác Nhận Nhận Việc) as UC4
+    (Đang Thực Hiện) as UC5
+    (Hoàn Thành) as UC6
+  }
+  
+  package "Thông Tin" {
+    (Xem Hồ Sơ) as UC7
+    (Cập Nhật Hồ Sơ) as UC8
+  }
+}
+
+Sitter --> UC1
+Sitter --> UC2
+Sitter --> UC3
+Sitter --> UC4
+Sitter --> UC5
+Sitter --> UC6
+Sitter --> UC7
+Sitter --> UC8
+
+@enduml

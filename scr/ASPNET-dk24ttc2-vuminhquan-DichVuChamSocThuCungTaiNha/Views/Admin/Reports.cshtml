@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Báo Cáo";
+}
+
+<div class="container mt-4">
+    <h2 class="fw-bold text-gradient mb-4">Báo Cáo Tháng</h2>
+    
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card glass-card h-100 border-0">
+                <div class="card-body p-5 text-center">
+                    <div class="mb-3">
+                        <span class="display-4">📅</span>
+                    </div>
+                    <h3 class="text-muted mb-3">Đơn Đặt Tháng Này</h3>
+                    <h1 class="display-2 fw-bold text-primary">@ViewBag.TotalBookings</h1>
+                    <p class="text-muted small">Tổng số đơn đã xác nhận và hoàn thành</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card glass-card h-100 border-0">
+                <div class="card-body p-5 text-center">
+                    <div class="mb-3">
+                        <span class="display-4">💰</span>
+                    </div>
+                    <h3 class="text-muted mb-3">Doanh Thu Tháng Này</h3>
+                    <h1 class="display-2 fw-bold text-success">@(((decimal)ViewBag.TotalRevenue).ToString("N0")) VNĐ</h1>
+                    <p class="text-muted small">Tổng doanh thu ước tính từ các đơn đặt</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mt-5 text-center">
+        <a href="/Admin" class="btn btn-outline-secondary">Quay Lại Bảng Điều Khiển</a>
+    </div>
+</div>

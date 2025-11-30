@@ -1,0 +1,64 @@
+@model IEnumerable<WebThuCungNew.Models.Pet>
+
+@{
+    ViewData["Title"] = "Thú Cưng Của Tôi";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <h1 class="fw-bold text-gradient">Thú Cưng Của Tôi</h1>
+            <p class="text-muted">Quản lý hồ sơ thú cưng yêu quý của bạn</p>
+        </div>
+        <a asp-action="Create" class="btn btn-primary btn-lg shadow-sm">
+            <span class="me-2">+</span> Thêm Thú Cưng Mới
+        </a>
+    </div>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 glass-card border-0">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div class="rounded-circle bg-light d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                <span class="fs-2">@(item.Type == "Dog" ? "🐶" : item.Type == "Cat" ? "🐱" : "🐾")</span>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-link text-muted p-0" type="button" data-bs-toggle="dropdown">
+                                    •••
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end border-0 shadow">
+                                    <li><a class="dropdown-item" asp-action="Edit" asp-route-id="@item.PetId">Chỉnh Sửa</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-danger" asp-action="Delete" asp-route-id="@item.PetId" onclick="return confirm('Bạn có chắc muốn xóa?');">Xóa</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <h3 class="card-title fw-bold">@item.Name</h3>
+                        <p class="text-muted mb-2">@item.Breed</p>
+                        
+                        <div class="bg-white bg-opacity-50 rounded p-3 mt-3">
+                            <small class="text-uppercase text-muted fw-bold" style="font-size: 0.7rem;">GHI CHÚ</small>
+                            <p class="mb-0 small">@item.Notes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        
+        @if (!Model.Any())
+        {
+            <div class="col-12 text-center py-5">
+                <div class="glass-card p-5 d-inline-block">
+                    <span class="display-1 d-block mb-3">🐾</span>
+                    <h3>Chưa có thú cưng nào</h3>
+                    <p class="text-muted mb-4">Thêm thú cưng đầu tiên để bắt đầu đặt dịch vụ.</p>
+                    <a asp-action="Create" class="btn btn-primary">Thêm Thú Cưng Ngay</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

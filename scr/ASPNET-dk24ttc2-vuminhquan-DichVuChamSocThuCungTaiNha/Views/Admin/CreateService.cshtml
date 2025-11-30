@@ -1,0 +1,59 @@
+@model WebThuCungNew.Models.Service
+
+@{
+    ViewData["Title"] = "Tạo Dịch Vụ";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card glass-card border-0">
+                <div class="card-header bg-transparent border-0 pt-4 pb-0 text-center">
+                    <h2 class="fw-bold text-gradient">Tạo Dịch Vụ Mới</h2>
+                    <p class="text-muted">Thêm dịch vụ mới vào danh mục</p>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="CreateService">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="ServiceName" class="form-label fw-bold text-muted small">TÊN DỊCH VỤ</label>
+                            <input asp-for="ServiceName" class="form-control" placeholder="VD: Tắm rửa toàn thân" required />
+                            <span asp-validation-for="ServiceName" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="ImageUrl" class="form-label fw-bold text-muted small">ĐƯỜNG DẪN HÌNH ẢNH</label>
+                            <input asp-for="ImageUrl" class="form-control" placeholder="https://..." />
+                            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Price" class="form-label fw-bold text-muted small">GIÁ (VNĐ)</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-0">💰</span>
+                                <input asp-for="Price" class="form-control" type="number" step="1000" placeholder="0" required />
+                            </div>
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label asp-for="Description" class="form-label fw-bold text-muted small">MÔ TẢ</label>
+                            <textarea asp-for="Description" class="form-control" rows="3" placeholder="Mô tả dịch vụ..."></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg shadow-sm">Tạo Dịch Vụ</button>
+                            <a asp-action="Services" class="btn btn-outline-secondary">Quay Lại Danh Sách</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

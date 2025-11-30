@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = "Đăng Nhập";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow-soft p-4">
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <h2 class="fw-bold text-gradient">Chào Mừng Trở Lại</h2>
+                        <p class="text-muted">Vui lòng đăng nhập vào tài khoản của bạn</p>
+                    </div>
+                    
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger rounded-pill text-center">@ViewBag.Error</div>
+                    }
+                    
+                    <form asp-action="Login" method="post">
+                        <div class="mb-4">
+                            <label for="email" class="form-label fw-bold text-muted small">ĐỊA CHỈ EMAIL</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="ten@example.com" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="password" class="form-label fw-bold text-muted small">MẬT KHẨU</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="••••••••" required>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Đăng Nhập</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center border-0 bg-transparent pt-3">
+                    <p class="mb-0 text-muted">Chưa có tài khoản? <a href="/Account/Register" class="text-primary fw-bold">Đăng ký tại đây</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

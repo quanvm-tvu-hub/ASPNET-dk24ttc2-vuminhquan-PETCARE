@@ -1,0 +1,63 @@
+@model WebThuCungNew.Models.Pet
+
+@{
+    ViewData["Title"] = "Chỉnh Sửa Thú Cưng";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card glass-card border-0">
+                <div class="card-header bg-transparent border-0 pt-4 pb-0 text-center">
+                    <h2 class="fw-bold text-gradient">Chỉnh Sửa Thú Cưng</h2>
+                    <p class="text-muted">Cập nhật thông tin của @Model.Name</p>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="PetId" />
+                        <input type="hidden" asp-for="OwnerId" />
+                        
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label fw-bold text-muted small">TÊN THÚ CƯNG</label>
+                            <input asp-for="Name" class="form-control" required />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="Type" class="form-label fw-bold text-muted small">LOẠI</label>
+                                <select asp-for="Type" class="form-select" required>
+                                    <option value="Dog">Chó 🐶</option>
+                                    <option value="Cat">Mèo 🐱</option>
+                                    <option value="Other">Khác 🐾</option>
+                                </select>
+                                <span asp-validation-for="Type" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Breed" class="form-label fw-bold text-muted small">GIỐNG</label>
+                                <input asp-for="Breed" class="form-control" />
+                                <span asp-validation-for="Breed" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label asp-for="Notes" class="form-label fw-bold text-muted small">GHI CHÚ</label>
+                            <textarea asp-for="Notes" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Notes" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg shadow-sm">Lưu Thay Đổi</button>
+                            <a asp-action="Index" class="btn btn-outline-secondary">Quay Lại Danh Sách</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

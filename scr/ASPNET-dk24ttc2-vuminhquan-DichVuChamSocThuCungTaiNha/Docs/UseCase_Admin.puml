@@ -1,0 +1,61 @@
+@startuml
+title Use Case Diagram - Quản Trị Viên
+
+skinparam linetype ortho
+
+actor "Khách" as Guest
+actor "Người Dùng" as User
+actor "Admin" as Admin
+
+' Kế thừa
+User --|> Guest
+Admin --|> User
+
+rectangle "Hệ Thống Quản Trị Minh Quân Pet Service" {
+  
+  (Đăng Nhập) as UC1
+  
+  package "Quản Lý Người Dùng" {
+    (Xem Người Dùng) as UC2
+    (Thêm Người Dùng) as UC3
+    (Sửa Người Dùng) as UC4
+    (Xóa Người Dùng) as UC5
+  }
+  
+  package "Quản Lý Dịch Vụ" {
+    (Xem Dịch Vụ) as UC6
+    (Thêm Dịch Vụ) as UC7
+    (Sửa Dịch Vụ) as UC8
+    (Xóa Dịch Vụ) as UC9
+  }
+  
+  package "Quản Lý Đặt Lịch" {
+    (Xem Đặt Lịch) as UC10
+    (Phân Công Nhân Viên) as UC11
+    (Xác Nhận Đơn) as UC12
+    (Hủy Đơn) as UC13
+  }
+  
+  package "Báo Cáo" {
+    (Xem Doanh Thu) as UC14
+    (Xem Thống Kê) as UC15
+  }
+}
+
+Admin --> UC1
+Admin --> UC2
+Admin --> UC3
+Admin --> UC4
+Admin --> UC5
+Admin --> UC6
+Admin --> UC7
+Admin --> UC8
+Admin --> UC9
+Admin --> UC10
+Admin --> UC11
+Admin --> UC12
+Admin --> UC13
+Admin --> UC14
+Admin --> UC15
+
+@enduml

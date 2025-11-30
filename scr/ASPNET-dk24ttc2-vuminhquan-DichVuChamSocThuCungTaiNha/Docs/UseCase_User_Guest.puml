@@ -1,0 +1,43 @@
+@startuml
+title Use Case Diagram - Khách/Người Dùng
+
+skinparam linetype ortho
+
+actor "Khách" as Guest
+actor "Người Dùng" as User
+
+' User kế thừa từ Guest
+User --|> Guest
+
+rectangle "Hệ Thống Minh Quân Pet Service" {
+  
+  package "Khách" {
+    (Xem Dịch Vụ) as UC1
+    (Đặt Dịch Vụ Guest) as UC2
+  }
+  
+  package "Người Dùng" {
+    (Đăng Ký) as UC3
+    (Đăng Nhập) as UC4
+    (Thêm Thú Cưng) as UC5
+    (Sửa Thú Cưng) as UC6
+    (Xóa Thú Cưng) as UC7
+    (Đặt Dịch Vụ User) as UC8
+    (Xem Lịch Sử) as UC9
+    (Hủy Đặt Lịch) as UC10
+  }
+}
+
+Guest --> UC1
+Guest --> UC2
+
+User --> UC3
+User --> UC4
+User --> UC5
+User --> UC6
+User --> UC7
+User --> UC8
+User --> UC9
+User --> UC10
+
+@enduml

@@ -1,0 +1,68 @@
+@model WebThuCungNew.Models.Booking
+
+@{
+    ViewData["Title"] = "Đặt Lịch Thành Công";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card glass-card border-0 text-center">
+                <div class="card-body p-5">
+                    <div class="mb-4">
+                        <span class="display-1">✅</span>
+                    </div>
+                    <h1 class="fw-bold text-gradient mb-3">Đặt Lịch Thành Công!</h1>
+                    <p class="lead text-muted mb-4">
+                        Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi. Chúng tôi sẽ liên hệ với bạn sớm nhất để xác nhận.
+                    </p>
+
+                    <div class="card bg-light border-0 mb-4">
+                        <div class="card-body">
+                            <h5 class="fw-bold mb-3">Thông Tin Đặt Lịch</h5>
+                            <div class="row text-start">
+                                <div class="col-md-6 mb-3">
+                                    <strong>Mã đơn:</strong> #@Model.BookingId
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>Dịch vụ:</strong> @Model.Service.ServiceName
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>Thú cưng:</strong> @(Model.Pet?.Name ?? Model.PetName)
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>Ngày giờ:</strong> @Model.BookingDate.ToString("dd/MM/yyyy HH:mm")
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>Địa điểm:</strong> @Model.Location
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>Tổng tiền:</strong> <span class="text-primary fw-bold">@Model.TotalPrice.ToString("N0") VNĐ</span>
+                                </div>
+                                @if (!string.IsNullOrEmpty(Model.GuestPhone))
+                                {
+                                    <div class="col-md-6 mb-3">
+                                        <strong>Liên hệ:</strong> @Model.GuestPhone
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <strong>Lưu ý:</strong> Vui lòng giữ liên lạc qua số điện thoại đã đăng ký. 
+                        Chúng tôi sẽ gọi để xác nhận trong vòng 24 giờ.
+                    </div>
+
+                    <div class="d-grid gap-2 mt-4">
+                        <a href="/" class="btn btn-primary btn-lg">Về Trang Chủ</a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a href="/Booking/History" class="btn btn-outline-secondary">Xem Lịch Sử Đặt Lịch</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

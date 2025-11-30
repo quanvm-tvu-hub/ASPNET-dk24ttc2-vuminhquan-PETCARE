@@ -1,0 +1,96 @@
+@{
+    ViewData["Title"] = "Bảng Điều Khiển Admin";
+}
+
+<div class="container mt-4">
+    <div class="mb-5">
+        <h1 class="fw-bold text-gradient">Bảng Điều Khiển Quản Trị</h1>
+        <p class="text-muted">Tổng quan về hiệu suất hệ thống và quản lý</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="card glass-card h-100 border-0">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+                            <span class="fs-4">👥</span>
+                        </div>
+                        <h5 class="card-title mb-0 fw-bold">Người Dùng</h5>
+                    </div>
+                    <p class="card-text text-muted small">Quản lý tài khoản khách hàng và nhân viên.</p>
+                    <a href="/Admin/Users" class="btn btn-outline-primary btn-sm w-100 mt-2">Quản Lý Người Dùng</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card glass-card h-100 border-0">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-success bg-opacity-10 p-3 rounded-circle me-3">
+                            <span class="fs-4">🛠️</span>
+                        </div>
+                        <h5 class="card-title mb-0 fw-bold">Dịch Vụ</h5>
+                    </div>
+                    <p class="card-text text-muted small">Tạo và cập nhật các dịch vụ.</p>
+                    <a href="/Admin/Services" class="btn btn-outline-success btn-sm w-100 mt-2">Quản Lý Dịch Vụ</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card glass-card h-100 border-0">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-warning bg-opacity-10 p-3 rounded-circle me-3">
+                            <span class="fs-4">📅</span>
+                        </div>
+                        <h5 class="card-title mb-0 fw-bold">Đặt Lịch</h5>
+                    </div>
+                    <p class="card-text text-muted small">Phân công nhân viên và theo dõi đơn hàng.</p>
+                    <a href="/Admin/Bookings" class="btn btn-outline-warning btn-sm w-100 mt-2">Quản Lý Đặt Lịch</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card glass-card h-100 border-0">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-info bg-opacity-10 p-3 rounded-circle me-3">
+                            <span class="fs-4">📊</span>
+                        </div>
+                        <h5 class="card-title mb-0 fw-bold">Báo Cáo</h5>
+                    </div>
+                    <p class="card-text text-muted small">Xem doanh thu và thống kê.</p>
+                    <a href="/Admin/Reports" class="btn btn-outline-info btn-sm w-100 mt-2">Xem Báo Cáo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card glass-card border-0">
+                <div class="card-body p-4">
+                    <h4 class="fw-bold mb-4">Trạng Thái Hệ Thống</h4>
+                    <div class="row text-center">
+                        <div class="col-md-4 border-end">
+                            <h2 class="text-primary fw-bold">Hoạt Động</h2>
+                            <span class="text-muted">Tình Trạng Hệ Thống</span>
+                        </div>
+                        <div class="col-md-4 border-end">
+                            <h2 class="text-success fw-bold">Trực Tuyến</h2>
+                            <span class="text-muted">Cơ Sở Dữ Liệu</span>
+                        </div>
+                        <div class="col-md-4">
+                            <h2 class="text-info fw-bold">v1.0</h2>
+                            <span class="text-muted">Phiên Bản</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

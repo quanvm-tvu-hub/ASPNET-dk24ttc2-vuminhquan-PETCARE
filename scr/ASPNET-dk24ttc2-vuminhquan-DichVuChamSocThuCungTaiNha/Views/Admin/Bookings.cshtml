@@ -1,0 +1,90 @@
+@model IEnumerable<WebThuCungNew.Models.Booking>
+
+@{
+    ViewData["Title"] = "Quản Lý Đặt Lịch";
+    var sitters = ViewBag.Sitters as IEnumerable<WebThuCungNew.Models.User>;
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-gradient">Quản Lý Đặt Lịch</h2>
+    </div>
+    
+    <div class="card glass-card border-0">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th class="ps-4">ID</th>
+                            <th>Khách Hàng</th>
+                            <th>Dịch Vụ</th>
+                            <th>Thú Cưng</th>
+                            <th>Ngày Giờ</th>
+                            <th>Trạng Thái</th>
+                            <th>Nhân Viên</th>
+                            <th class="text-end pe-4">Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="ps-4 fw-bold">#@item.BookingId</td>
+                                <td>
+                                    @if (item.Client != null)
+                                    {
+                                        <div class="fw-bold">@item.Client.FullName</div>
+                                        <small class="text-muted">@item.Client.Phone</small>
+                                    }
+                                    else
+                                    {
+                                        <div class="fw-bold">@item.GuestName</div>
+                                        <small class="text-muted">@item.GuestPhone</small>
+                                    }
+                                </td>
+                                <td>@(item.Service?.ServiceName ?? "N/A")</td>
+                                <td>
+                                    @if (item.Pet != null)
+                                    {
+                                        @item.Pet.Name
+                                    }
+                                    else
+                                    {
+                                        @item.PetName
+                                    }
+                                </td>
+                                <td>@item.BookingDate.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>
+                                    <span class="badge rounded-pill bg-@(item.Status == "Pending" ? "warning" : item.Status == "Confirmed" ? "primary" : item.Status == "Completed" ? "success" : "danger")">
+                                        @(item.Status == "Pending" ? "Đang Chờ" : item.Status == "Confirmed" ? "Đã Xác Nhận" : item.Status == "Completed" ? "Hoàn Thành" : "Đã Hủy")
+                                    </span>
+                                </td>
+                                <td>@(item.Sitter?.FullName ?? "Chưa phân công")</td>
+                                <td class="text-end pe-4">
+                                    @if (item.Status == "Pending")
+                                    {
+                                        <form asp-action="AssignSitter" method="post" class="d-flex justify-content-end">
+                                            <input type="hidden" name="bookingId" value="@item.BookingId" />
+                                            <select name="sitterId" class="form-select form-select-sm me-2" style="width: auto;" required>
+                                                <option value="">Chọn nhân viên</option>
+                                                @if (sitters != null)
+                                                {
+                                                    foreach (var sitter in sitters)
+                                                    {
+                                                        <option value="@sitter.UserId">@sitter.FullName</option>
+                                                    }
+                                                }
+                                            </select>
+                                            <button type="submit" class="btn btn-sm btn-primary">Phân Công</button>
+                                        </form>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

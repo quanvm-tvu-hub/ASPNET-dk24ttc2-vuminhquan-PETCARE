@@ -1,0 +1,91 @@
+@model IEnumerable<WebThuCungNew.Models.Booking>
+
+@{
+    ViewData["Title"] = "Lịch Làm Việc";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-gradient">Lịch Làm Việc Của Tôi</h2>
+    </div>
+
+    <div class="card glass-card border-0">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th class="ps-4">ID</th>
+                            <th>Thông Tin Khách Hàng</th>
+                            <th>Dịch Vụ</th>
+                            <th>Thú Cưng</th>
+                            <th>Ngày & Địa Điểm</th>
+                            <th>Trạng Thái</th>
+                            <th class="text-end pe-4">Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="ps-4 fw-bold">#@item.BookingId</td>
+                                <td>
+                                    @if (item.Client != null)
+                                    {
+                                        <div class="fw-bold">@item.Client.FullName</div>
+                                        <a href="tel:@item.Client.Phone" class="text-decoration-none text-muted small">📞 @item.Client.Phone</a>
+                                    }
+                                    else
+                                    {
+                                        <div class="fw-bold">@item.GuestName <span class="badge bg-secondary">Guest</span></div>
+                                        <a href="tel:@item.GuestPhone" class="text-decoration-none text-muted small">📞 @item.GuestPhone</a>
+                                    }
+                                </td>
+                                <td>@(item.Service?.ServiceName ?? "Unknown Service")</td>
+                                <td>
+                                    @if (item.Pet != null)
+                                    {
+                                        <div class="fw-bold">@item.Pet.Name</div>
+                                        <small class="text-muted">@item.Pet.Type</small>
+                                    }
+                                    else
+                                    {
+                                        <div class="fw-bold">@item.PetName</div>
+                                        <small class="text-muted">@item.PetType</small>
+                                    }
+                                </td>
+                                <td>
+                                    <div>@item.BookingDate.ToString("dd/MM/yyyy HH:mm")</div>
+                                    <small class="text-muted">📍 @item.Location</small>
+                                </td>
+                                <td>
+                                    <span class="badge rounded-pill bg-@(item.Status == "Pending" ? "warning" : item.Status == "Confirmed" ? "primary" : item.Status == "Completed" ? "success" : "danger")">
+                                        @(item.Status == "Pending" ? "Đang Chờ" : item.Status == "Confirmed" ? "Đã Xác Nhận" : item.Status == "Completed" ? "Hoàn Thành" : "Đã Hủy")
+                                    </span>
+                                </td>
+                                <td class="text-end pe-4">
+                                    @if (item.Status == "Confirmed")
+                                    {
+                                        <form asp-action="UpdateStatus" method="post" class="d-inline">
+                                            <input type="hidden" name="bookingId" value="@item.BookingId" />
+                                            <input type="hidden" name="status" value="Completed" />
+                                            <button type="submit" class="btn btn-sm btn-success shadow-sm">Hoàn Thành</button>
+                                        </form>
+                                    }
+                                    else if (item.Status == "Pending")
+                                    {
+                                        <form asp-action="UpdateStatus" method="post" class="d-inline">
+                                            <input type="hidden" name="bookingId" value="@item.BookingId" />
+                                            <input type="hidden" name="status" value="Confirmed" />
+                                            <button type="submit" class="btn btn-sm btn-primary shadow-sm">Xác Nhận</button>
+                                        </form>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

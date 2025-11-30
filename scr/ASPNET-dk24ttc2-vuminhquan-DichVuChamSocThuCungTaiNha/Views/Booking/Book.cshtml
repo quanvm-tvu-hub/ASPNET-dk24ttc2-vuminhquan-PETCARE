@@ -1,0 +1,124 @@
+@model WebThuCungNew.Models.Booking
+
+@{
+    ViewData["Title"] = "Đặt Dịch Vụ";
+    var service = ViewBag.Service as WebThuCungNew.Models.Service;
+    var pets = ViewBag.Pets as IEnumerable<WebThuCungNew.Models.Pet>;
+    var isAuthenticated = ViewBag.IsAuthenticated as bool? ?? false;
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card glass-card border-0">
+                <div class="card-header bg-transparent border-0 pt-4 pb-0 text-center">
+                    <h2 class="fw-bold text-gradient">Đặt Dịch Vụ</h2>
+                    <p class="text-muted">@service.ServiceName</p>
+                    <div class="alert alert-info">
+                        <strong>Giá dịch vụ:</strong> @service.Price.ToString("N0") VNĐ
+                    </div>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Book" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="ServiceId" value="@service.ServiceId" />
+                        
+                        @if (!isAuthenticated)
+                        {
+                            <div class="alert alert-warning">
+                                <strong>Lưu ý:</strong> Bạn đang đặt dịch vụ với tư cách khách. 
+                                <a href="/Account/Login">Đăng nhập</a> để quản lý lịch sử đặt dịch vụ.
+                            </div>
+
+                            <h5 class="fw-bold mb-3">Thông Tin Liên Hệ</h5>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold text-muted small">HỌ VÀ TÊN *</label>
+                                    <input type="text" name="guestName" class="form-control" placeholder="Nguyễn Văn A" required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold text-muted small">SỐ ĐIỆN THOẠI *</label>
+                                    <input type="tel" name="guestPhone" class="form-control" placeholder="0909..." required />
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label fw-bold text-muted small">EMAIL</label>
+                                <input type="email" name="guestEmail" class="form-control" placeholder="email@example.com" />
+                            </div>
+
+                            <h5 class="fw-bold mb-3">Thông Tin Thú Cưng</h5>
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold text-muted small">TÊN THÚ CƯNG *</label>
+                                    <input type="text" name="petName" class="form-control" placeholder="VD: Milo" required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold text-muted small">LOẠI *</label>
+                                    <select name="petType" class="form-select" required>
+                                        <option value="">-- Chọn loại --</option>
+                                        <option value="Dog">Chó 🐶</option>
+                                        <option value="Cat">Mèo 🐱</option>
+                                        <option value="Other">Khác 🐾</option>
+                                    </select>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="mb-4">
+                                <label asp-for="PetId" class="form-label fw-bold text-muted small">CHỌN THÚ CƯNG</label>
+                                <select asp-for="PetId" class="form-select" required>
+                                    <option value="">-- Chọn Thú Cưng --</option>
+                                    @if (pets != null)
+                                    {
+                                        foreach (var pet in pets)
+                                        {
+                                            <option value="@pet.PetId">@pet.Name (@pet.Type)</option>
+                                        }
+                                    }
+                                </select>
+                                <span asp-validation-for="PetId" class="text-danger"></span>
+                                <div class="form-text text-end"><a href="/Pet/Create" class="text-decoration-none">Thêm thú cưng mới</a></div>
+                            </div>
+                        }
+
+                        <h5 class="fw-bold mb-3">Chi Tiết Đặt Lịch</h5>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label asp-for="BookingDate" class="form-label fw-bold text-muted small">NGÀY & GIỜ *</label>
+                                <input asp-for="BookingDate" class="form-control" type="datetime-local" required />
+                                <span asp-validation-for="BookingDate" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="PaymentMethod" class="form-label fw-bold text-muted small">THANH TOÁN *</label>
+                                <select asp-for="PaymentMethod" class="form-select" required>
+                                    <option value="COD">Thanh toán khi nhận dịch vụ (COD)</option>
+                                    <option value="BankTransfer">Chuyển khoản ngân hàng</option>
+                                </select>
+                                <span asp-validation-for="PaymentMethod" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Location" class="form-label fw-bold text-muted small">ĐỊA ĐIỂM *</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-0">📍</span>
+                                <input asp-for="Location" class="form-control" placeholder="Địa chỉ nhà hoặc địa điểm cụ thể" required />
+                            </div>
+                            <span asp-validation-for="Location" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2 mt-5">
+                            <button type="submit" class="btn btn-success btn-lg shadow-sm">Xác Nhận Đặt Lịch</button>
+                            <a href="/" class="btn btn-outline-secondary">Quay Lại</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
